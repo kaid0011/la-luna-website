@@ -8,8 +8,12 @@ import netlify from "@netlify/vite-plugin";
 export default defineConfig({
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url))
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+      'page-flip': 'page-flip/dist/js/page-flip.module.js'
     },
+  },
+    optimizeDeps: {
+    exclude: ['page-flip']
   },
   plugins: [
     vue({

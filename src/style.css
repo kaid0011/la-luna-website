@@ -479,3 +479,10 @@ body {
 .social-section {
    background: var(--coffee-caramel);
 }
+
+.flipbook-container {
+  width: 100%;
+  margin: 0 auto;
+  min-height: 360px;   /* visible area while images/layout prepare */
+  position: relative;
+}

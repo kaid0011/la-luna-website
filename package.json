@@ -11,6 +11,7 @@
   "dependencies": {
     "@netlify/vite-plugin": "^2.5.8",
     "@quasar/extras": "^1.17.0",
+    "page-flip": "^2.0.7",
     "quasar": "^2.18.2",
     "vue": "^3.5.18",
     "vue-router": "^4.5.1"

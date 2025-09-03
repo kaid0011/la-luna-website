@@ -40,7 +40,7 @@
         <div class="text-overline">Purpose</div>
         <h2 class="text-h4 q-mb-sm">Our mission</h2>
         <p class="text-body1 text-grey-8">
-          La Luna Moon Cafe is a moon‑inspired sanctuary in Novaliches, QC—created so people can pause, breathe, and savor good coffee in a calm, heartwarming space.
+          La Luna Moon Cafe is a moon-inspired sanctuary in Novaliches, QC—created so people can pause, breathe, and savor good coffee in a calm, heartwarming space.
         </p>
 
         <div class="row q-col-gutter-md q-mt-md">
@@ -69,7 +69,7 @@
             </div>
           </div>
           <q-separator class="q-my-md" />
-          <div class="text-caption text-grey-7">* Opened July 14, 2025 • Moon‑inspired design • Warm hospitality</div>
+          <div class="text-caption text-grey-7">* Opened July 14, 2025 • Moon-inspired design • Warm hospitality</div>
         </q-card>
       </div>
     </div>
@@ -83,6 +83,56 @@
           “Under the moonlight, we brew more than coffee — we brew moments.”
         </q-card-section>
       </q-card>
+    </div>
+  </section>
+
+  <!-- HOURS & LOCATION -->
+  <section class="bg-grey-1 q-py-xl">
+    <div class="container">
+      <div class="text-center q-mb-lg">
+        <div class="text-overline">Visit</div>
+        <h2 class="text-h4">Hours & Location</h2>
+        <div class="q-mt-sm">
+          <q-badge :color="openNow ? 'green-6' : 'red-6'" text-color="white" class="q-px-md q-py-xs">
+            {{ statusBadgeText }}
+          </q-badge>
+        </div>
+      </div>
+
+      <div class="row q-col-gutter-xl items-start">
+        <div class="col-12 col-md-7">
+          <q-markup-table flat bordered class="bg-white rounded-borders">
+            <thead>
+              <tr>
+                <th class="text-left">Day</th>
+                <th class="text-left">Hours</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(h, idx) in weekRows" :key="idx" :class="{ 'bg-grey-2': idx === today }">
+                <td class="text-weight-medium">
+                  {{ dayLabels[idx] }}
+                  <q-badge v-if="idx === today" color="primary" class="q-ml-xs">Today</q-badge>
+                </td>
+                <td class="text-left">
+                  {{ formatRangeForDay(idx) }}
+                </td>
+              </tr>
+            </tbody>
+          </q-markup-table>
+        </div>
+
+        <div class="col-12 col-md-5">
+          <q-card flat bordered class="q-pa-md hover-lift">
+            <div class="text-subtitle1 text-weight-bold">Address</div>
+            <div class="text-body2 text-grey-8">[Unit, Building, Street], Novaliches, Quezon City</div>
+            <div class="row items-center q-gutter-sm q-mt-sm">
+              <q-btn outline color="primary" icon="pin_drop" no-caps label="Directions" :href="gmaps" target="_blank" rel="noopener" />
+              <q-btn outline color="primary" icon="star" no-caps label="Leave a review" :href="greview" target="_blank" rel="noopener" />
+            </div>
+          </q-card>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -161,7 +211,7 @@
     <div class="container row items-center justify-between">
       <div>
         <div class="text-h5 q-mb-xs">Come say hello ☕</div>
-        <div class="text-subtitle2 opacity-80">[Unit, Building, Street], [District, City] • Mon–Thu 7:00–21:00 • Fri–Sun 7:00–22:00</div>
+        <div class="text-subtitle2 opacity-80">[Unit, Building, Street], [District, City] • Weekdays 11:00 AM – 10:00 PM • Fri–Sun 10:00 AM – 12:00 MN</div>
       </div>
       <div class="row q-gutter-sm">
         <q-btn color="primary" unelevated no-caps label="Order Now" icon="shopping_cart" />
@@ -186,20 +236,92 @@ const heroBgStyle = computed(() => ({
 
 // SEO meta
 useMeta(() => ({
-  title: 'About La Luna Moon Cafe — Moon‑Inspired Coffee in Novaliches, QC',
+  title: 'About La Luna Moon Cafe — Moon-Inspired Coffee in Novaliches, QC',
   meta: {
-    description: { name: 'description', content: 'La Luna Moon Cafe is a moon‑inspired sanctuary in Novaliches, QC. Opened July 14, 2025 to offer calm coffee, warm light, and unhurried moments.' },
+    description: { name: 'description', content: 'La Luna Moon Cafe is a moon-inspired sanctuary in Novaliches, QC. Opened July 14, 2025 to offer calm coffee, warm light, and unhurried moments.' },
     ogTitle: { property: 'og:title', content: 'About La Luna Moon Cafe' },
-    ogDescription: { property: 'og:description', content: 'A moon‑lit haven for calm coffee and warm company in Novaliches, QC.' },
+    ogDescription: { property: 'og:description', content: 'A moon-lit haven for calm coffee and warm company in Novaliches, QC.' },
     ogType: { property: 'og:type', content: 'website' },
     ogImage: { property: 'og:image', content: '/og/la-luna-about.jpg' }
   }
 }))
 
-// Values (moon‑inspired)
+// ====== HOURS / SCHEDULE (Weekend vs Weekday) ======
+const dayLabels = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+const isWeekend = (d) => d === 0 || d === 5 || d === 6 // Sun, Fri, Sat
+
+// 24h values for accurate computation; display uses formatRangeForDay()
+const schedule = {
+  0: ['10:00','24:00'], // Sun: 10:00 AM – 12:00 MN
+  1: ['11:00','22:00'], // Mon: 11:00 AM – 10:00 PM
+  2: ['11:00','22:00'], // Tue
+  3: ['11:00','22:00'], // Wed
+  4: ['11:00','22:00'], // Thu
+  5: ['10:00','24:00'], // Fri
+  6: ['10:00','24:00']  // Sat
+}
+
+const weekRows = [schedule[0], schedule[1], schedule[2], schedule[3], schedule[4], schedule[5], schedule[6]]
+const today = new Date().getDay()
+
+// Display string per day row
+function formatRangeForDay(idx) {
+  return isWeekend(idx) ? '10:00 AM – 12:00 MN' : '11:00 AM – 10:00 PM'
+}
+
+// Parse "HH:mm", handling 24:00 → next day 00:00
+function toDateTime(hhmm, baseDate = new Date()) {
+  const [h, m] = hhmm.split(':').map(Number)
+  const d = new Date(baseDate)
+  if (h === 24) { d.setDate(d.getDate() + 1); d.setHours(0, 0, 0, 0) }
+  else { d.setHours(h, m, 0, 0) }
+  return d
+}
+
+function nextOpenTime() {
+  const now = new Date()
+  for (let i = 0; i < 7; i++) {
+    const day = (now.getDay() + i) % 7
+    const hours = schedule[day]
+    if (hours) {
+      const d = new Date()
+      d.setDate(now.getDate() + i)
+      const [h, m] = hours[0].split(':').map(Number)
+      d.setHours(h, m, 0, 0)
+      return d
+    }
+  }
+  return null
+}
+
+function todayBounds() {
+  const now = new Date()
+  const d = now.getDay()
+  const hours = schedule[d]
+  if (!hours) return { open: false, openAt: nextOpenTime() }
+  const [openH, closeH] = hours
+  const openDate = toDateTime(openH, now)
+  const closeDate = toDateTime(closeH, now) // handles 24:00 → next day 00:00
+  const open = now >= openDate && now <= closeDate
+  return { open, openAt: openDate, closeAt: closeDate }
+}
+
+const bounds = computed(() => todayBounds())
+const openNow = computed(() => bounds.value.open)
+const nextOpen = computed(() =>
+  bounds.value.openAt
+    ? bounds.value.openAt.toLocaleString([], { weekday: 'short', hour: '2-digit', minute: '2-digit' })
+    : 'soon'
+)
+const todayCloseLabel = computed(() => (isWeekend(today) ? '12:00 MN' : '10:00 PM'))
+const statusBadgeText = computed(() =>
+  openNow.value ? `Open now — until ${todayCloseLabel.value}` : `Closed — opens ${nextOpen.value}`
+)
+
+// Values (moon-inspired)
 const values = [
   { icon: 'nightlight_round', title: 'Calm & cozy', desc: 'Soft light, slow coffee, unhurried moments.' },
-  { icon: 'local_cafe', title: 'Crafted with care', desc: 'Small‑batch roasts and comforting flavors.' },
+  { icon: 'local_cafe', title: 'Crafted with care', desc: 'Small-batch roasts and comforting flavors.' },
   { icon: 'diversity_3', title: 'Safe space', desc: 'Welcoming to dreamers, lovers, friends & families.' },
   { icon: 'auto_awesome', title: 'A touch of magic', desc: 'Starry accents and little delights in every visit.' }
 ]
@@ -208,7 +330,6 @@ const values = [
 const stats = [
   { value: '2025', label: 'Since', icon: 'calendar_month' },
   { value: 'Novaliches', label: 'Quezon City', icon: 'place' }
-  // Add more when ready: { value: '4.7★', label: 'Avg rating', icon: 'star' }, { value: '10k+', label: 'Cups served', icon: 'local_cafe' }
 ]
 
 // Timeline (client story)
@@ -245,99 +366,11 @@ const press = ['City Eats', 'Daily Brew', 'Local Tribune', 'Neighborhood Mag']
 const faqs = [
   { q: 'Do you take reservations?', a: 'Weekdays only, until 6 PM. Weekends are walk-in; join the waitlist on arrival.' },
   { q: 'Are you pet-friendly?', a: 'Yes, outdoor seats only. Water bowls available.' },
-  { q: 'Do you have Wi‑Fi and sockets?', a: 'Wi‑Fi is available; sockets are limited. On weekends we set a 2‑hour limit.' },
+  { q: 'Do you have Wi-Fi and sockets?', a: 'Wi-Fi is available; sockets are limited. On weekends we set a 2-hour limit.' },
   { q: 'Allergens & dietary options?', a: 'Ask our team; nut-free and vegan options are labeled on the menu.' }
 ]
+
+// Links (replace with real IDs)
+const gmaps = 'https://maps.app.goo.gl/ChIJ-ymm_oCxlzMR8KM3wOzIkUA'
+const greview = 'https://search.google.com/local/writereview?placeid=ChIJ-ymm_oCxlzMR8KM3wOzIkUA'
 </script>
-
-<style lang="scss" scoped>
-:root {
-  /* Coffee palette */
-  --coffee-cream: #fff7e8;
-  --coffee-sand: #cfab71;
-  --coffee-caramel: #7f5e35;
-  --coffee-espresso: #713105;
-  --coffee-bark: #4f351c;
-  --coffee-ink: #341100;
-
-  /* Quasar brand bridge (optional) */
-  --q-primary: var(--coffee-caramel);
-  --q-secondary: var(--coffee-espresso);
-  --q-accent: var(--coffee-sand);
-  --q-dark: var(--coffee-ink);
-}
-
-.container { max-width: 1120px; margin: 0 auto; padding-inline: 16px; }
-
-/* Hero toolbar (inside hero) */
-.hero-toolbar { position: relative; margin-top: 12px; background: rgba(0,0,0,0); }
-.brand { color: white; text-decoration: none; text-shadow: 0 1px 8px rgba(0,0,0,.35); }
-.brand-title { letter-spacing: .2px; }
-.menu-items :deep(.q-tabs__content) { gap: 4px; }
-.tab-link { position: relative; }
-.tab-link :deep(.q-tab__label) { color: white; text-shadow: 0 1px 6px rgba(0,0,0,.35); }
-.tab-link::after { content: ""; position: absolute; left: 10%; right: 10%; bottom: 4px; height: 2px; transform: scaleX(0); transform-origin: left; background: currentColor; opacity: .85; transition: transform 160ms ease; }
-.tab-link:hover::after { transform: scaleX(1); }
-
-/* Hero header */
-.hero-header { min-height: 56vh; position: relative; overflow: hidden; }
-.hero-header-bg { position: absolute; inset: 0; background-size: cover; background-position: center; filter: saturate(1.05); }
-.hero-header-bg::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(80% 60% at 50% 20%, rgba(127,94,53,.25), transparent 60%),
-              radial-gradient(120% 80% at 50% 120%, rgba(52,17,0,.7), rgba(52,17,0,.9));
-}
-.hero-header-content { padding: 0 16px; }
-.leading-tight { line-height: 1.05; }
-.hero-curve { position: absolute; bottom: -1px; left: 0; width: 100%; height: 90px; fill: #fff7e8; }
-
-/* Cards & hover */
-.hover-lift { transition: transform 160ms ease, box-shadow 160ms ease; will-change: transform; }
-.hover-lift:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,.12); }
-
-/* Values */
-.value-card { text-align: left; }
-.value-icon { background: linear-gradient(135deg, var(--coffee-caramel), var(--coffee-espresso)); color: #fff; }
-
-/* Stats */
-.stat-icon { background: rgba(127, 94, 53, .12); color: var(--coffee-caramel); }
-
-/* Process stepper visuals */
-.process-card { position: relative; }
-.process-card::after { content: ''; position: absolute; top: 34px; right: -12px; width: 24px; height: 2px; background: rgba(0,0,0,.08); }
-.process-grid > div:last-child .process-card::after { display: none; }
-.step-badge { position: absolute; top: -12px; left: -12px; width: 36px; height: 36px; border-radius: 50%; background: #fff; border: 2px solid rgba(0,0,0,.06); display: grid; place-items: center; font-weight: 700; color: var(--coffee-caramel); box-shadow: 0 4px 16px rgba(0,0,0,.08); }
-
-/* Press cloud */
-.press-cloud :deep(.q-badge) { border-radius: 9999px; }
-
-/* CTA */
-.cta { position: relative; overflow: hidden; }
-.cta-decor { position: absolute; inset: -20% -10% auto auto; height: 240px; width: 240px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(127,94,53,.25), transparent 60%); filter: blur(6px); }
-
-/* Light section background override to cream */
-.bg-grey-1 { background-color: var(--coffee-cream) !important; }
-
-/* Utilities */
-.opacity-80 { opacity: .8; }
-.opacity-90 { opacity: .9; }
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .hover-lift { transition: none; }
-  .tab-link::after { transition: none; }
-}
-
-/* Responsive tweaks */
-@media (max-width: 767px) {
-  .hero-header { min-height: 46vh; }
-  .hero-header-content h1 { font-size: 1.8rem; }
-  .process-card::after { display: none; }
-}
-</style>
-
-<style lang="scss">
-/* Global background to ensure no dark seams under the wave */
-html, body, #q-app, .q-layout, .q-page-container, .q-page { background: var(--coffee-cream) !important; }
-</style>

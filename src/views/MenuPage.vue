@@ -1,5 +1,5 @@
 <template>
-  <!-- HERO / TITLE (menu kept inside hero) -->
+  <!-- HERO / TITLE (unchanged) -->
   <section id="hero" class="relative-position hero-header">
     <div class="hero-header-bg" :style="heroBgStyle" role="img" aria-label="Cafe interior hero image"></div>
 
@@ -24,7 +24,7 @@
     <div class="absolute-full flex flex-center">
       <div class="hero-header-content text-center text-white">
         <h1 class="text-h2 text-weight-bolder q-mb-xs q-mt-none leading-tight">Our Menu</h1>
-        <div class="text-subtitle1 opacity-90">Moon-inspired drinks & bites, all day.</div>
+        <div class="text-subtitle1 opacity-90">Moon-inspired drinks &amp; bites, all day.</div>
       </div>
     </div>
 
@@ -33,153 +33,139 @@
     </svg>
   </section>
 
-  <!-- CONTROLS (Category + Search ONLY) -->
-  <section class="filter-bar bg-grey-1">
-    <div class="container row items-center q-col-gutter-md">
-      <div class="col-12 col-lg">
-        <q-tabs v-model="cat" dense class="text-primary" active-color="primary" indicator-color="primary" align="left" outside-arrows mobile-arrows>
-          <q-tab v-for="c in categoriesWithCounts" :key="c.value" :name="c.value" :label="`${c.label} (${c.count})`" />
-        </q-tabs>
-      </div>
-
-      <div class="col-12 col-sm-6 col-md-4">
-        <q-input v-model="search" dense outlined placeholder="Search dishes or drinks…" clearable>
-          <template #prepend><q-icon name="search" /></template>
-        </q-input>
-      </div>
-
-      <div class="col-12">
-        <div class="row q-col-gutter-sm items-center">
-          <q-badge v-if="search" class="filter-chip" color="white" text-color="grey-9">
-            Search: “{{ search }}”
-            <q-btn dense flat round icon="close" @click="search = ''"/>
-          </q-badge>
-          <q-btn v-if="hasAnyFilter" flat dense no-caps icon="clear_all" label="Clear search" @click="clearAllFilters"/>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GRID -->
+  <!-- FLIPBOOK -->
   <section class="q-py-xl container">
     <div class="row items-center justify-between q-mb-sm">
-      <div class="text-caption text-grey-7">Showing {{ filtered.length }} of {{ currentCategoryCount }} items</div>
-    </div>
-
-    <div class="row q-col-gutter-lg items-stretch">
-      <div v-for="it in filtered" :key="it.id" class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <q-card flat bordered :class="['menu-card','hover-lift','full-height',{ soldout: it.soldOut }]">
-          <div class="img-wrap">
-            <q-img :src="it.img || fallbackImg" ratio="1" :alt="it.name" loading="lazy" />
-            <div class="absolute-top q-pa-sm">
-              <q-badge v-if="it.soldOut" color="red-5" text-color="white">Not available</q-badge>
-            </div>
-          </div>
-
-          <q-card-section>
-            <div class="row items-start justify-between">
-              <div class="text-weight-bold">{{ it.name }}</div>
-              <div class="text-weight-bold">{{ peso(it.price) }}</div>
-            </div>
-            <div class="text-caption text-grey-7 q-mt-xs menu-desc">{{ it.desc }}</div>
-          </q-card-section>
-
-          <q-separator />
-
-          <q-card-actions align="between" class="menu-actions">
-            <div class="text-caption text-grey-6">{{ labelCategory(it.category) }}</div>
-            <q-btn :disable="it.soldOut" color="primary" flat no-caps
-                   :label="it.soldOut ? 'Not available' : 'Add to order'"
-                   icon="add_shopping_cart" @click="addToOrder(it)" />
-          </q-card-actions>
-        </q-card>
+      <div class="text-caption text-grey-7">
+        Showing {{ pages.length }} pages
+      </div>
+      <div class="row q-gutter-sm">
+        <q-btn flat icon="menu_book" label="Cover" @click="goToCover" />
+        <q-btn round dense icon="chevron_left" @click="prev" />
+        <q-btn round dense icon="chevron_right" @click="next" />
       </div>
     </div>
 
-    <div v-if="filtered.length === 0" class="q-mt-xl text-center text-grey-7">No items match your search.</div>
+    <!-- PageFlip renders directly into this container -->
+    <div class="flipbook-container" ref="containerRef"></div>
+
+    <div v-if="pages.length === 0" class="q-mt-xl text-center text-grey-7">
+      No pages found.
+    </div>
   </section>
-
-  <!-- LEGEND / NOTES -->
-  <!-- <section class="q-pb-xl container">
-    <q-banner class="bg-grey-2 legend">
-      <div class="text-caption">
-        <b>Notes:</b> *Prices include VAT. Last order: 20:30.
-      </div>
-    </q-banner>
-  </section> -->
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
+import { PageFlip } from 'page-flip'
 
-/* --- HERO BG --- */
+/* --- HERO BG (kept non-dimming for toolbar/tabs) --- */
 const heroImg = new URL('@/assets/images/home-hero.jpg', import.meta.url).href
-const heroBgStyle = computed(() => ({ backgroundImage: `linear-gradient(rgba(52,17,0,.55), rgba(52,17,0,.25)), url('${heroImg}')` }))
+const heroBgStyle = computed(() => ({
+  backgroundImage: `linear-gradient(rgba(52,17,0,.55), rgba(52,17,0,.25)), url('${heroImg}')`
+}))
 
-/* --- DATA SOURCE (external JSON) --- */
-const items = ref([])
-const fallbackImg = new URL('@/assets/images/menu-placeholder.jpg', import.meta.url).href
+/* --- STATE --- */
+const containerRef = ref(null)
+const flip = ref(null)
 
-async function loadMenu () {
+const pages = ref([]) // all pages from JSON
+
+/* --- LOAD PAGES (images) --- */
+async function loadPages () {
   try {
-    const res = await fetch('/menu.json', { cache: 'no-store' })
-    if (!res.ok) throw new Error('menu.json not found')
+    const res = await fetch('/menu-pages.json', { cache: 'no-store' })
+    if (!res.ok) throw new Error('menu-pages.json not found')
     const data = await res.json()
-    items.value = (Array.isArray(data) ? data : []).map((it, idx) => ({
-      id: it.id ?? idx + 1,
-      category: String(it.category || '').toLowerCase(),
-      name: it.name || 'Item',
-      desc: it.desc || '',
-      price: Number(it.price || 0),
-      soldOut: !!it.soldOut,
-      img: it.img || fallbackImg
+    // normalize
+    pages.value = (Array.isArray(data) ? data : []).map((p, idx) => ({
+      id: p.id ?? idx + 1,
+      src: p.src,
+      title: p.title || '',
+      tags: String(p.tags || '')
     }))
-    if (items.value.length && !cat.value) {
-      cat.value = items.value[0].category
-    }
   } catch (e) {
-    console.error('Failed to load menu.json', e)
-    items.value = []
+    console.error('Failed to load menu-pages.json', e)
+    pages.value = []
   }
 }
-onMounted(loadMenu)
+onMounted(loadPages)
 
-/* --- CATEGORY LABELS (auto from data) --- */
-function labelCategory (v) {
-  return v ? v.replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : ''
+/* --- UTIL: preload images --- */
+function preloadImages(srcs) {
+  return Promise.all(
+    srcs.map(
+      (src) =>
+        new Promise((resolve, reject) => {
+          const img = new Image()
+          img.onload = () => resolve(src)
+          img.onerror = () => reject(new Error('Failed to load ' + src))
+          img.src = src
+        })
+    )
+  )
 }
-const categories = computed(() => {
-  const uniq = [...new Set(items.value.map(i => i.category))].filter(Boolean)
-  return uniq.map(v => ({ label: labelCategory(v), value: v }))
-})
-const categoryCounts = computed(() => {
-  const t = {}; for (const i of items.value) t[i.category] = (t[i.category] || 0) + 1; return t
-})
-const categoriesWithCounts = computed(() =>
-  categories.value.map(c => ({ ...c, count: categoryCounts.value[c.value] || 0 }))
-)
 
-/* --- UI STATE --- */
-const cat = ref('')
-const search = ref('')
+/* --- PAGEFLIP INIT / RE-INIT (images mode) --- */
+async function initFlip () {
+  if (!containerRef.value) return
 
-/* --- FILTERED VIEW (keep original order; no sort/price/availability filters) --- */
-const filtered = computed(() => {
-  return items.value
-    .filter(i => !cat.value || i.category === cat.value)
-    .filter(i => !search.value || (i.name + ' ' + i.desc).toLowerCase().includes(search.value.toLowerCase()))
-})
+  // destroy previous
+  if (flip.value) {
+    try { flip.value.destroy() } catch {}
+    flip.value = null
+  }
 
-const currentCategoryCount = computed(() => items.value.filter(i => i.category === cat.value).length)
-const hasAnyFilter = computed(() => !!search.value)
+  const imgList = pages.value.map(p => p.src)
+  if (!imgList.length) return
 
-/* --- ACTIONS / HELPERS --- */
-function clearAllFilters(){ search.value = '' }
-function addToOrder(item){ console.log('Add to order', item) }
+  // 1) ensure images are loaded (avoid blank textures)
+  await preloadImages(imgList)
 
-function peso(n) {
-  const num = Number(n || 0);
-  return '₱' + num.toLocaleString('en-PH', { maximumFractionDigits: 0 });
+  // 2) ensure layout is ready (avoid zero-width init)
+  await nextTick()
+  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))
+
+  // compute single-page size
+  const cw = containerRef.value.clientWidth || 800
+  const pageWidth  = Math.min(520, Math.max(320, Math.floor(cw / 2)))
+  const pageHeight = Math.round(pageWidth * 1.30)
+
+  // create book
+  flip.value = new PageFlip(containerRef.value, {
+    width: pageWidth,
+    height: pageHeight,
+    size: 'stretch',
+    minWidth: 280,
+    minHeight: 300,
+    maxWidth: 1100,
+    maxHeight: 1600,
+    showCover: true,
+    mobileScrollSupport: true,
+    useMouseEvents: true,
+    autoSize: true,
+    disableFlipByClick: false
+  })
+
+  // 3) render from IMAGES (one image per page)
+  flip.value.loadFromImages(imgList)
 }
+
+/* Controls */
+function prev(){ flip.value?.flipPrev() }
+function next(){ flip.value?.flipNext() }
+function goToCover(){ flip.value?.flip(0) }
+
+/* Re-init on data change and resize */
+function onResize(){ initFlip() }
+
+onMounted(() => {
+  window.addEventListener('resize', onResize)
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', onResize)
+  if (flip.value) flip.value.destroy()
+})
+
+watch(pages, () => { initFlip() })
 </script>
-

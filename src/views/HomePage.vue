@@ -473,11 +473,30 @@
       </div>
     </div>
   </section>
+  <q-dialog v-model="showRules" transition-show="jump-down" transition-hide="jump-up">
+  <q-card style="max-width:640px" class="q-pa-none" aria-label="House rules dialog">
+    <q-card-section class="text-h6 text-weight-bold">House rules (Work & Study)</q-card-section>
+    <q-separator />
+    <q-card-section class="text-body2">
+      <ul class="q-pl-md q-mt-none q-mb-none">
+        <li>Keep voices low; take long calls outdoors when possible.</li>
+        <li>One order per person every 2 hours during peak times.</li>
+        <li>Sockets are first-come; please bring your own adapter.</li>
+        <li>Please be mindful of shared seating during busy hours.</li>
+      </ul>
+    </q-card-section>
+    <q-card-actions align="right">
+      <q-btn flat label="Close" color="primary" v-close-popup />
+    </q-card-actions>
+  </q-card>
+</q-dialog>
+
 </template>
 
 <script setup>
 import { ref, computed } from "vue";
-
+const showRules = ref(false);
+const messengerUrl = "https://m.me/LaLunaMoonCafe";
 // images first
 const heroImg = new URL("@/assets/images/home-hero.jpg", import.meta.url).href;
 const aboutImg =
@@ -683,7 +702,7 @@ const nextOpen = computed(() =>
 );
 
 const socials = {
-  fb: "https://facebook.com/LaLunaMoonCafe", // TODO: replace with real handle
+  fb: "https://facebook.com/profile.php?id=61577042127849", // TODO: replace with real handle
   ig: "https://instagram.com/lalunamooncafe", // TODO
   tt: "https://tiktok.com/@lalunamooncafe", // TODO
   gmaps: "https://maps.app.goo.gl/YOUR_PLACE_ID", // TODO

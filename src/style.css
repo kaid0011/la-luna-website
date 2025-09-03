@@ -1,11 +1,412 @@
 @font-face {
-  font-family: 'Sen';
-  src: url('./assets/fonts/Sen.ttf') format('truetype');
-  font-weight: 400;      /* regular */
+  font-family: "Sen";
+  src: url("./assets/fonts/Sen.ttf") format("truetype");
+  font-weight: 400; /* regular */
   font-style: normal;
   font-display: swap;
 }
 
-#app {
-  background-color: #fff7e8;
+/* =============================
+   1) Palette (CSS variables)
+   ============================= */
+:root {
+  /* Coffee palette */
+  --coffee-cream: #fff7e8; /* page bg */
+  --coffee-sand: #cfab71; /* accents */
+  --coffee-caramel: #7f5e35; /* primary UI */
+  --coffee-espresso: #713105; /* headings/CTA */
+  --coffee-bark: #4f351c; /* deep text */
+  --coffee-ink: #341100; /* darkest */
+}
+
+/* Optional: If you want Quasar brand tokens to visually match, keep these SASS values
+   aligned in quasar-variables.sass (already present in your repo). */
+/* $primary:   #713105;  // espresso
+   $secondary: #cfab71;  // sand
+   $accent:    #7f5e35;  // caramel (if you change)
+*/
+
+/* =====================================
+   2) Global resets / base / containers
+   ===================================== */
+html,
+body,
+#q-app,
+.q-layout,
+.q-page-container,
+.q-page {
+  background: var(--coffee-cream) !important;
+}
+
+/* Readability defaults */
+body {
+  color: var(--coffee-ink);
+}
+
+/* Responsive container used across pages */
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-inline: 16px;
+}
+
+/* Utilities */
+.opacity-80 {
+  opacity: 0.8;
+}
+.opacity-90 {
+  opacity: 0.9;
+}
+.leading-tight {
+  line-height: 1.05;
+}
+
+/* Hover lift tokens used by many cards */
+.hover-lift {
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  will-change: transform;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Quasar greys -> cream background for light sections */
+.bg-grey-1 {
+  background-color: var(--coffee-cream) !important;
+}
+
+/* Subtle inputs rounding on Contact page */
+.contact-card .q-field__control {
+  border-radius: 12px;
+}
+
+/* =============================
+   3) Header (MainLayout)
+   ============================= */
+.header {
+  background: var(--coffee-espresso) !important;
+}
+
+/* Transition for scroll-in header */
+.header-fade-slide-enter-active,
+.header-fade-slide-leave-active {
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.header-fade-slide-enter-from,
+.header-fade-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+/* =============================
+   4) Hero (shared across pages)
+   ============================= */
+.hero-header {
+  position: relative;
+  overflow: hidden;
+  min-height: 56vh;
+  padding-top: 2em;
+}
+.hero-header-content {
+  margin-top: 3em;
+}
+.hero-header-plus {
+  position: relative;
+  overflow: hidden;
+  min-height: 90vh;
+  padding-top: 2em;
+}
+.hero-header-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: saturate(1.05);
+}
+/* Overlay/vignette for text contrast (coffee tinted) */
+.hero-header-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      80% 60% at 50% 20%,
+      rgba(127, 94, 53, 0.25),
+      transparent 60%
+    ),
+    radial-gradient(
+      120% 80% at 50% 120%,
+      rgba(52, 17, 0, 0.7),
+      rgba(52, 17, 0, 0.9)
+    );
+}
+/* Toolbar inside hero */
+.hero-toolbar {
+  position: relative;
+  margin-top: 12px;
+  background: transparent;
+  z-index: 2;
+}
+.brand {
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+}
+.brand-title {
+  letter-spacing: 0.2px;
+}
+/* Quasar tabs spacing */
+.menu-items .q-tabs__content {
+  gap: 1em;
+}
+
+.menu-items .q-tab {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+/* Subtle underline hover for tabs */
+.tab-link {
+  position: relative;
+}
+.tab-link .q-tab__label {
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+}
+.tab-link::after {
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 4px;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: currentColor;
+  opacity: 0.85;
+  transition: transform 160ms ease;
+}
+/* .tab-link:hover::after { transform: scaleX(1); } */
+
+/* Wave divider fix — cream fill prevents dark seam under hero */
+.hero-curve {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  fill: #fff7e8;
+  pointer-events: none;
+  display: block;
+}
+
+.scroll-toolbar {
+   margin-top: 0 !important;
+}
+
+/* =============================
+   5) Home – features, menu highlights, parallax
+   ============================= */
+/* Feature cards */
+.feature-card {
+  text-align: left;
+}
+.feature-icon {
+  background: linear-gradient(
+    135deg,
+    var(--coffee-caramel),
+    var(--coffee-espresso)
+  );
+  color: #fff;
+}
+
+/* Menu highlights */
+.menu-card .img-wrap {
+  position: relative;
+}
+.menu-card .q-img__image {
+  transition: transform 200ms ease;
+}
+.menu-card:hover .q-img__image {
+  transform: scale(1.03);
+}
+
+/* Parallax readability glaze */
+.parallax-overlay {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25));
+}
+
+/* =============================
+   6) Menu Page – filters & grid
+   ============================= */
+.filter-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding-block: 0.5rem;
+}
+.filter-chip {
+  border-radius: 9999px;
+  padding: 2px 8px;
+}
+.tag-row {
+  left: 8px;
+}
+.soldout-scrim {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+.legend {
+  border: 1px dashed rgba(0, 0, 0, 0.08);
+}
+
+/* =============================
+   7) About Page – values, stats, process, press, cta
+   ============================= */
+/* Values */
+.value-card {
+  text-align: left;
+}
+.value-icon {
+  background: linear-gradient(
+    135deg,
+    var(--coffee-caramel),
+    var(--coffee-espresso)
+  );
+  color: #fff;
+}
+/* Stats */
+.stat-icon {
+  background: color-mix(in oklab, var(--coffee-caramel) 12%, transparent);
+  color: var(--coffee-caramel);
+}
+/* Process stepper visuals */
+.process-card {
+  position: relative;
+}
+.process-card::after {
+  content: "";
+  position: absolute;
+  top: 34px;
+  right: -12px;
+  width: 24px;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.08);
+}
+.process-grid > div:last-child .process-card::after {
+  display: none;
+}
+.step-badge {
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid rgba(0, 0, 0, 0.06);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: var(--coffee-caramel);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+/* Press cloud */
+.press-cloud .q-badge {
+  border-radius: 9999px;
+}
+/* CTA orb */
+.cta {
+  position: relative;
+  overflow: hidden;
+}
+.cta-decor {
+  position: absolute;
+  inset: -20% -10% auto auto;
+  height: 240px;
+  width: 240px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(127, 94, 53, 0.25),
+    transparent 60%
+  );
+  filter: blur(6px);
+}
+
+/* =============================
+   8) Contact Page – list & map
+   ============================= */
+.contact-list .q-item__section--avatar {
+  color: var(--coffee-caramel);
+}
+.map-wrap {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* =============================
+   9) Responsive tweaks
+   ============================= */
+@media (max-width: 767px) {
+  .hero-header {
+    min-height: 42vh;
+  }
+  .hero-header-content h1 {
+    font-size: 1.8rem;
+  }
+  .process-card::after {
+    display: none;
+  }
+}
+
+/* Reduced-motion respect */
+@media (prefers-reduced-motion: reduce) {
+  .hover-lift {
+    transition: none;
+  }
+  .tab-link::after {
+    transition: none;
+  }
+}
+
+/* Put inside <style lang="scss" scoped> of MenuPage.vue */
+
+.menu-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* with .full-height + items-stretch ensures equal cards */
+}
+
+.img-wrap {
+  position: relative;
+  /* q-img ratio="1" already keeps this square and uniform */
+}
+
+.menu-desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* clamp description to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.6em; /* reserve space so rows align even if short text */
+}
+
+.menu-actions {
+  margin-top: auto; /* push actions to the bottom for consistent layout */
+}
+
+.soldout-scrim {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-weight: 700;
 }

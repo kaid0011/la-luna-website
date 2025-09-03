@@ -11,7 +11,7 @@
             <span class="q-ml-sm text-weight-bold brand-title">La Luna Moon Cafe</span>
           </RouterLink>
         </q-toolbar-title>
-        <q-tabs class="menu-items" shrink indicator-color="secondary" active-color="primary">
+        <q-tabs class="menu-items" shrink indicator-color="secondary" active-color="secondary">
           <q-route-tab to="/" label="Home" no-caps class="text-white tab-link" />
           <q-route-tab to="/menu" label="Menu" no-caps class="text-white tab-link" />
           <q-route-tab to="/about" label="About" no-caps class="text-white tab-link" />

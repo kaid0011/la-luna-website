@@ -1,0 +1,875 @@
+[
+  {
+    "id": 1,
+    "category": "orbital-pasta",
+    "name": "Firefly Alfredo (Spicy Chicken Alfredo)",
+    "price": 229,
+    "desc": "Creamy Alfredo with a spicy kick—like flickering stars on a dark night.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 2,
+    "category": "orbital-pasta",
+    "name": "Nebula Pesto (Tuna Pesto)",
+    "price": 229,
+    "desc": "Fresh tuna with vibrant pesto, a flavor explosion from the stars.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 3,
+    "category": "orbital-pasta",
+    "name": "Moonbeam Carbonara (Carbonara)",
+    "price": 229,
+    "desc": "Classic creamy goodness that lights up your palate.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 4,
+    "category": "sweet-side-of-the-moon",
+    "name": "Blue Moon Cheesecake (Blueberry Cheesecake)",
+    "price": 180,
+    "desc": "Creamy and dreamy, kissed with blueberries from another galaxy.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1505252585461-04db1eb84625?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 5,
+    "category": "sweet-side-of-the-moon",
+    "name": "Stellar Pistachio (Pistachio Cheesecake)",
+    "price": 200,
+    "desc": "A nutty delight with a cosmic crunch.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1543251697-4c01a6d3f81b?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 6,
+    "category": "sweet-side-of-the-moon",
+    "name": "Orbit Biscoff Cheesecake (Biscoff Cheesecake)",
+    "price": 180,
+    "desc": "Spiced, sweet, and totally orbit-worthy.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 7,
+    "category": "sweet-side-of-the-moon",
+    "name": "Dark Side Cheesecake (Basque Burnt Cheesecake)",
+    "price": 150,
+    "desc": "Deep, caramelized, and mysterious like the moon’s shadowy side.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1518131678677-a9b1e8e91bb0?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 8,
+    "category": "sweet-side-of-the-moon",
+    "name": "Cinnamon Comet Roll (Cinnamon)",
+    "price": 98,
+    "desc": "Swirled and spiced like a comet trail across the stars.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1505252585461-04db1eb84625?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 9,
+    "category": "sweet-side-of-the-moon",
+    "name": "Luna Loaf (Cheese Bread)",
+    "price": 98,
+    "desc": "Soft, cheesy, and comforting — your go‑to moon companion.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1543251697-4c01a6d3f81b?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 10,
+    "category": "sweet-side-of-the-moon",
+    "name": "Crescent Croissant (Croissant)",
+    "price": 98,
+    "desc": "Flaky and golden like a crescent moon at sunrise.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 11,
+    "category": "sweet-side-of-the-moon",
+    "name": "Meteor Muffin (Muffin)",
+    "price": 88,
+    "desc": "Bursting with flavor like a mini cosmic explosion.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1518131678677-a9b1e8e91bb0?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 12,
+    "category": "sweet-side-of-the-moon",
+    "name": "Banana Beam (Banana Bread)",
+    "price": 98,
+    "desc": "Soft and radiant—this loaf shines with banana goodness.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1505252585461-04db1eb84625?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 13,
+    "category": "sweet-side-of-the-moon",
+    "name": "Galactic Garlic Toast (Garlic Bread)",
+    "price": 128,
+    "desc": "Savory, golden, and seasoned for interstellar cravings.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1543251697-4c01a6d3f81b?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 14,
+    "category": "moon-crisps",
+    "name": "Crescent Crisp (Classic Croffle)",
+    "price": 109,
+    "desc": "Flaky and golden—just like a classic crescent moon.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 15,
+    "category": "moon-crisps",
+    "name": "Dark Moon Crisp (Chocolate Croffle)",
+    "price": 129,
+    "desc": "Rich chocolatey layers baked to moonlit perfection.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1543251697-4c01a6d3f81b?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 16,
+    "category": "moon-crisps",
+    "name": "Orbit Oreo Crisp (Oreo Croffle)",
+    "price": 139,
+    "desc": "Cookies & cream goodness swirling in every flaky bite.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 17,
+    "category": "moon-crisps",
+    "name": "Emerald Moon Crisp (Matcha Croffle)",
+    "price": 139,
+    "desc": "Earthy matcha wrapped in a soft, crisp moon crust.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 18,
+    "category": "moon-crisps",
+    "name": "Lunar Nutella Dream (Nutella Dream Croffle)",
+    "price": 159,
+    "desc": "A warm, dreamy croffle filled with cosmic Nutella swirls.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1543251697-4c01a6d3f81b?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 19,
+    "category": "moon-crisps",
+    "name": "Saturn Biscoffle (Biscoffle)",
+    "price": 159,
+    "desc": "Spiced cookie croffle that’s out of this galaxy.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 20,
+    "category": "moon-crisps",
+    "name": "Golden Banana Beam (Banana Croffle)",
+    "price": 149,
+    "desc": "Sweet, buttery banana warmth shining through each bite.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 21,
+    "category": "moon-crisps",
+    "name": "Starlit S’mores (S’mores)",
+    "price": 149,
+    "desc": "Bursting with flavor like a mini cosmic explosion.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1543251697-4c01a6d3f81b?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 22,
+    "category": "lunar-buns-wraps",
+    "name": "Supernova Dog (Ultimate Hungarian)",
+    "price": 179,
+    "desc": "The ultimate Hungarian hotdog—bold and bursting with flavor.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 23,
+    "category": "lunar-buns-wraps",
+    "name": "Cheese Comet (Cheesiest Hungarian)",
+    "price": 169,
+    "desc": "Overflowing with cheesy goodness that’s out of this world.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 24,
+    "category": "lunar-buns-wraps",
+    "name": "Orbit Dog Classic (Classic Hungarian Sandwich)",
+    "price": 129,
+    "desc": "The timeless Hungarian hotdog with a lunar twist.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1517705008128-361805f42e86?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 25,
+    "category": "lunar-buns-wraps",
+    "name": "Moonwalker Chicken (Classic Chicken SW)",
+    "price": 129,
+    "desc": "Simple, classic, and perfect for any moonlit stroll.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 26,
+    "category": "lunar-buns-wraps",
+    "name": "Cheesy Moonbeam (Cheesy Chicken SW)",
+    "price": 139,
+    "desc": "Chicken + cheese in perfect harmony under the stars.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 27,
+    "category": "lunar-buns-wraps",
+    "name": "Galaxy Duo (Cheesy Ham & Chicken SW)",
+    "price": 149,
+    "desc": "Ham and chicken unite in a cheesy cosmic combo.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1517705008128-361805f42e86?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 28,
+    "category": "lunar-buns-wraps",
+    "name": "Starship Stack (Overloaded Sandwich)",
+    "price": 159,
+    "desc": "All the fillings, all the flavors—an interstellar feast.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 29,
+    "category": "moon-muchies",
+    "name": "Lunar Wedges (Potato Wedges)",
+    "price": 98,
+    "desc": "Crispy, golden wedges perfect for cosmic dipping.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 30,
+    "category": "moon-muchies",
+    "name": "Meteor Mojos (Mojos)",
+    "price": 108,
+    "desc": "Crispy potato bites with a fiery lunar kick.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 31,
+    "category": "moon-muchies",
+    "name": "Moon Cheese Sticks (Mozzarella Stick)",
+    "price": 198,
+    "desc": "Gooey cheese sticks that melt like moonlight.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 32,
+    "category": "moon-muchies",
+    "name": "Nebula Nachos (Nachos)",
+    "price": 208,
+    "desc": "Loaded, crunchy, and bursting with flavor from the stars.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 33,
+    "category": "moon-muchies",
+    "name": "Starburst Dynamite (Dynamite)",
+    "price": 88,
+    "desc": "Spicy, bold, and ready to ignite your taste buds.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 34,
+    "category": "moon-muchies",
+    "name": "Galactic Hearts (Cheesy Heart Garlic Bread)",
+    "price": 88,
+    "desc": "Buttery heart‑shaped toast baked with love and cheese.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 35,
+    "category": "moon-muchies",
+    "name": "Banana Eclipse (Banana Split)",
+    "price": 159,
+    "desc": "A cool and creamy treat that’s out of this world.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 36,
+    "category": "luna-melt-series",
+    "name": "Dark Moon Melt (Iced Chocolate Affogato)",
+    "price": 198,
+    "desc": "Bold chocolate + espresso over ice cream—like dusk melting into night.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 37,
+    "category": "luna-melt-series",
+    "name": "Luna de Leche (Iced Spanish Affogato)",
+    "price": 198,
+    "desc": "A creamy, sweet affogato inspired by the warmth of moonlight.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 38,
+    "category": "luna-melt-series",
+    "name": "Hazel Eclipse (Iced Hazelnut Affogato)",
+    "price": 198,
+    "desc": "Nutty and smooth, like a hazelnut moon crossing paths with espresso.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 39,
+    "category": "luna-melt-series",
+    "name": "Celestial Caramel (Iced Salted Affogato)",
+    "price": 198,
+    "desc": "Sweet, salty, and luxuriously cold—a heavenly frozen fusion.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 40,
+    "category": "moonbrews",
+    "name": "Seafoam Latte (Sea Salt Creme Latte)",
+    "price": 155,
+    "desc": "A creamy, salty‑sweet brew inspired by the Sea of Serenity.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 41,
+    "category": "moonbrews",
+    "name": "Black Moon (Cafe Americano)",
+    "price": 139,
+    "desc": "Deep and bold—pure coffee, no frills, just like a new moon night.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1521017432531-fbd92d1cfb72?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 42,
+    "category": "moonbrews",
+    "name": "Cosmic Cold Brew (Cold Brew)",
+    "price": 139,
+    "desc": "Smooth, strong, and refreshingly dark—coffee that cools like space.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1485808191679-5f86510681a2?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 43,
+    "category": "moonbrews",
+    "name": "Crescent Latte (Cafe Latte)",
+    "price": 139,
+    "desc": "Soft and comforting—like your favorite moon phase in a cup.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 44,
+    "category": "moonbrews",
+    "name": "Moon Mocha (Cafe Mocha)",
+    "price": 139,
+    "desc": "Chocolate and coffee in perfect lunar harmony.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 45,
+    "category": "moonbrews",
+    "name": "Crater Cappuccino (Cappuccino)",
+    "price": 139,
+    "desc": "Espresso under a frothy blanket—just like the moon’s surface.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1521017432531-fbd92d1cfb72?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 46,
+    "category": "moonbrews",
+    "name": "Luna Blanca (Spanish Latte)",
+    "price": 139,
+    "desc": "Creamy and sweet, like sunlight glowing on the moon.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1485808191679-5f86510681a2?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 47,
+    "category": "moonbrews",
+    "name": "Caramel Eclipse (Caramel Macchiato)",
+    "price": 149,
+    "desc": "Sweet caramel colliding with espresso—golden and bold.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 48,
+    "category": "moonbrews",
+    "name": "Milky Moon Mocha (White Cafe Mocha)",
+    "price": 149,
+    "desc": "White chocolate fusion that feels like sipping on soft moonlight.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 49,
+    "category": "moonbrews",
+    "name": "Hazel Moon (Hazelnut Latte)",
+    "price": 149,
+    "desc": "A nutty blend that’s cozy and comforting, like a warm night sky.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1521017432531-fbd92d1cfb72?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 50,
+    "category": "moonbrews",
+    "name": "Vanilla Nova (French Vanilla)",
+    "price": 149,
+    "desc": "A gentle vanilla brew that glows with subtle sweetness.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1485808191679-5f86510681a2?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 51,
+    "category": "moonbrews",
+    "name": "Salted Starbeam (Salted Caramel)",
+    "price": 149,
+    "desc": "Sweet, salty, and starry—like a beam of light in the dark.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 52,
+    "category": "moonbrews",
+    "name": "Moonwalker’s Brew (Barista Drink)",
+    "price": 159,
+    "desc": "Your barista’s handpicked favorite—crafted for cosmic explorers.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 53,
+    "category": "moonbrews",
+    "name": "Rocket Shot (Iced Sweetened Espresso)",
+    "price": 139,
+    "desc": "A quick burst of energy to launch you through the day.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1521017432531-fbd92d1cfb72?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 54,
+    "category": "moonbrews",
+    "name": "Strawberry Supermoon (Mocha Strawberry)",
+    "price": 159,
+    "desc": "Chocolate + strawberry — rare, sweet, and totally magical.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1485808191679-5f86510681a2?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 55,
+    "category": "moonbrews",
+    "name": "Nutella Nebula (Nutella Latte)",
+    "price": 159,
+    "desc": "A rich swirl of Nutella and espresso floating in flavor orbit.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 56,
+    "category": "moonbrews",
+    "name": "Celestial Biscoff (Lotus Biscoff Latte)",
+    "price": 159,
+    "desc": "Spiced cookie + creamy coffee = a galaxy of flavor in every sip.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 57,
+    "category": "moonbrews",
+    "name": "Jelly Eclipse (Almond Coffee Jelly)",
+    "price": 149,
+    "desc": "Almond, coffee, and chewy jelly in a fun, textured blend.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1521017432531-fbd92d1cfb72?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 58,
+    "category": "moonbrews",
+    "name": "Crema Luna (Creme Brulee Latte)",
+    "price": 149,
+    "desc": "Caramelized sugar & espresso in a luxurious lunar layer.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1485808191679-5f86510681a2?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 59,
+    "category": "starlit-sips",
+    "name": "Pink Moon Latte (Strawberry Latte)",
+    "price": 139,
+    "desc": "A dreamy blend of strawberries and milk—sweet like a full moon night.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1554126807-6a2b0246fb1a?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 60,
+    "category": "starlit-sips",
+    "name": "Lava Moon (Choco Lava)",
+    "price": 129,
+    "desc": "Rich, molten chocolate in every sip—melts your worries away.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1507281640040-c0d3a4df87d5?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 61,
+    "category": "starlit-sips",
+    "name": "Berry Eclipse (Matcha Berry Latte)",
+    "price": 139,
+    "desc": "Earthy matcha meets berry burst in a perfectly balanced swirl.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 62,
+    "category": "starlit-sips",
+    "name": "Emerald Moon (Matcha Latte)",
+    "price": 139,
+    "desc": "Smooth and calming—like matcha under a moonlit forest.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1554126807-6a2b0246fb1a?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 63,
+    "category": "starlit-sips",
+    "name": "Lil’ Luna (Babyccino)",
+    "price": 89,
+    "desc": "Frothy milk for the little stargazers or the young at heart.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1507281640040-c0d3a4df87d5?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 64,
+    "category": "starlit-sips",
+    "name": "Cosmic Duo (Choco Berry Latte)",
+    "price": 139,
+    "desc": "Sweet chocolate and juicy berries, orbiting in harmony.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 65,
+    "category": "starlit-sips",
+    "name": "Dark Side Cocoa (Signature Chocolate)",
+    "price": 139,
+    "desc": "A rich, comforting classic—deep like the moon’s shadowy side.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1554126807-6a2b0246fb1a?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 66,
+    "category": "moonteas",
+    "name": "Ocean of Mochae (Sea Salt Brown Sugar)",
+    "price": 120,
+    "desc": "A sweet‑salty favorite with brown sugar swirls—like waves under moonlight.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1513639725746-c5d3e861f32a?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 67,
+    "category": "moonteas",
+    "name": "Luna Pearl (Classic Milktea)",
+    "price": 89,
+    "desc": "Classic, milky, and full of chewy moon pearls.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 68,
+    "category": "moonteas",
+    "name": "Golden Moon Drip (Brown Sugar Boba)",
+    "price": 99,
+    "desc": "Sweet, golden sugar layers that orbit your tastebuds.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 69,
+    "category": "moonteas",
+    "name": "Winter Moon (Wintermelon)",
+    "price": 89,
+    "desc": "Cool and mellow, like a calm breeze on a quiet lunar night.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1513639725746-c5d3e861f32a?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 70,
+    "category": "cosmic-creams",
+    "name": "Choco Meteor Swirl (Chocolate Chip Cream)",
+    "price": 178,
+    "desc": "A rich, creamy choco blend with bursts of meteor‑like chip crunch.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 71,
+    "category": "cosmic-creams",
+    "name": "Stardust Matcha (Matcha Chip Cream)",
+    "price": 178,
+    "desc": "Earthy matcha meets sweet swirls and cosmic crunch.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1518131678677-a9b1e8e91bb0?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 72,
+    "category": "cosmic-creams",
+    "name": "Blue Moon Bliss (Blueberry Cheesecake)",
+    "price": 178,
+    "desc": "Sweet blueberry + creamy cheesecake = rare, magical, unforgettable.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1554126807-6a2b0246fb1a?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 73,
+    "category": "cosmic-creams",
+    "name": "Solar Flare (Mango Cheesecake)",
+    "price": 178,
+    "desc": "Bright mango bursts like sunshine across a cheesecake galaxy.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 74,
+    "category": "cosmic-creams",
+    "name": "Moon Matcha (Matcha Cream)",
+    "price": 168,
+    "desc": "Smooth, pure matcha—like serenity in a frozen cup.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1518131678677-a9b1e8e91bb0?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 75,
+    "category": "cosmic-creams",
+    "name": "Strawberry Stardust (Strawberry and Cream)",
+    "price": 168,
+    "desc": "A light, pinky dream with fluffy cream and starry sweetness.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1554126807-6a2b0246fb1a?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 76,
+    "category": "cosmic-creams",
+    "name": "Orbit Matcha Crunch (Matcha Oreo)",
+    "price": 188,
+    "desc": "Earthy meets indulgent in this matcha and Oreo combo.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 77,
+    "category": "cosmic-creams",
+    "name": "Saturn Biscoff (Lotus Biscoff Frappe)",
+    "price": 188,
+    "desc": "Spiced cookie delight swirling in frozen caramel clouds.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1518131678677-a9b1e8e91bb0?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 78,
+    "category": "cosmic-creams",
+    "name": "Nova Nutella Almond (Nutella Almond Frappe)",
+    "price": 188,
+    "desc": "Nutty and chocolatey with stellar flavor orbit in every sip.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1554126807-6a2b0246fb1a?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 79,
+    "category": "frozen-moondust",
+    "name": "Lunar Eclipse (Dark Mocha Chips)",
+    "price": 188,
+    "desc": "Deep mocha with chocolate chips—intense and bold like a total eclipse.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 80,
+    "category": "frozen-moondust",
+    "name": "Meteor Chips (Java Chips)",
+    "price": 188,
+    "desc": "A burst of coffee and crunch that’s ready for liftoff.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1485808191679-5f86510681a2?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 81,
+    "category": "frozen-moondust",
+    "name": "Midnight Forest (Black Forest)",
+    "price": 188,
+    "desc": "Choco‑cherry swirl inspired by the sweet darkness of midnight skies.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 82,
+    "category": "frozen-moondust",
+    "name": "Golden Hour Frappe (Caramel Frappuccino)",
+    "price": 188,
+    "desc": "Sweet caramel glow in every icy sip—like last light before dusk.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 83,
+    "category": "frozen-moondust",
+    "name": "Moon Mocha Frappe (Mocha Frappe)",
+    "price": 188,
+    "desc": "Your classic mocha frozen to frothy orbit.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1485808191679-5f86510681a2?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 84,
+    "category": "frozen-moondust",
+    "name": "Saturn Swirl (Salted Caramel Frappe)",
+    "price": 188,
+    "desc": "Sweet salt swirls in a flavor spiral that’s totally otherworldly.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 85,
+    "category": "frozen-moondust",
+    "name": "Galactic Jelly Frappe (Coffee Jelly Frappe)",
+    "price": 198,
+    "desc": "Floating coffee jellies in an icy universe of flavor.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 86,
+    "category": "zero-gravity-fizz",
+    "name": "Classic Orbit (Coke Regular)",
+    "price": 89,
+    "desc": "Classic cola fizz that never fails.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1507281640040-c0d3a4df87d5?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 87,
+    "category": "zero-gravity-fizz",
+    "name": "Shadow Cola (Coke Zero)",
+    "price": 89,
+    "desc": "Light and crisp—zero sugar, full flavor.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 88,
+    "category": "zero-gravity-fizz",
+    "name": "Solar Spark (Royal)",
+    "price": 89,
+    "desc": "Bright orange fizz—sunny and bold.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 89,
+    "category": "zero-gravity-fizz",
+    "name": "Lunar Mist (Sprite)",
+    "price": 89,
+    "desc": "Cool and mellow—like a calm breeze on a quiet lunar night.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1507281640040-c0d3a4df87d5?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 90,
+    "category": "zero-gravity-fizz",
+    "name": "Starberry Pop (Fanta strawberry)",
+    "price": 99,
+    "desc": "Sweet strawberry soda with a cosmic kick.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 91,
+    "category": "zero-gravity-fizz",
+    "name": "Litebeam (Rite N’ Lite)",
+    "price": 59,
+    "desc": "Light and mellow—refreshing low‑cal fizz.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 92,
+    "category": "cosmic-quenchers",
+    "name": "Aurora Apple (Green Apple)",
+    "price": 108,
+    "desc": "Crisp and tangy—like a green aurora swirling in a glass.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1507281640040-c0d3a4df87d5?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 93,
+    "category": "cosmic-quenchers",
+    "name": "Blue Nebula (Blueberry)",
+    "price": 108,
+    "desc": "A cosmic‑blue cooler that’s sweet, deep, and delightfully chill.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1554126807-6a2b0246fb1a?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 94,
+    "category": "cosmic-quenchers",
+    "name": "Solar Mango Burst (Mango)",
+    "price": 108,
+    "desc": "Tropical and golden—like sipping sunshine on the moon.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 95,
+    "category": "cosmic-quenchers",
+    "name": "Cosmic Passion (Passion Fruit)",
+    "price": 108,
+    "desc": "Zesty and bold—your tastebuds’ one‑way rocket to flavor orbit.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1507281640040-c0d3a4df87d5?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 96,
+    "category": "cosmic-quenchers",
+    "name": "Galaxy Pop (Bubblegum)",
+    "price": 108,
+    "desc": "Sweet and nostalgic—like a bubbly adventure through the stars.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1554126807-6a2b0246fb1a?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 97,
+    "category": "cosmic-quenchers",
+    "name": "Lunar Lychee (Lychee)",
+    "price": 108,
+    "desc": "Delicate and dreamy—like moonlight in a glass with a fruity twist.",
+    "soldOut": false,
+    "img": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop"
+  }
+]

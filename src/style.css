@@ -9,15 +9,38 @@
 /* =============================
    1) Palette (CSS variables)
    ============================= */
+/* =============================
+   1) Palette (CSS variables)
+   ============================= */
 :root {
-  /* Coffee palette */
-  --coffee-cream: #fff7e8; /* page bg */
-  --coffee-sand: #cfab71; /* accents */
-  --coffee-caramel: #7f5e35; /* primary UI */
-  --coffee-espresso: #713105; /* headings/CTA */
-  --coffee-bark: #4f351c; /* deep text */
-  --coffee-ink: #341100; /* darkest */
+  /* Moonlit Espresso */
+  --coffee-cream:   #FFF7E8; /* page bg (unchanged) */
+  --coffee-sand:    #CFAB71; /* café gold / secondary */
+  --coffee-caramel: #0F172A; /* PRIMARY UI (midnight indigo) */
+  --coffee-espresso:#0F172A; /* headings / CTA (indigo) */
+  --coffee-bark:    #4F351C; /* deep brown (alt text / borders) */
+  --coffee-ink:     #341100; /* body text (espresso brown) */
+
+  /* Extras for consistency */
+  --moon-accent:    #B4A2F6; /* lunar lavender accent */
+  --success:        #2F9E70;
+  --warning:        #D97706;
+  --danger:         #B91C1C;
+
+  --overlay-hero:   rgba(15,23,42,0.55); /* image darkener, not UI */
+  --border:         rgba(15,23,42,0.12);
 }
+
+/* Optional: Quasar brand bridge — keep these in quasar-variables.sass */
+ /* $primary:   #0F172A   // midnight indigo
+    $secondary: #CFAB71   // café gold
+    $accent:    #B4A2F6   // lunar lavender
+    $positive:  #2F9E70
+    $warning:   #D97706
+    $negative:  #B91C1C
+    $dark:      #341100
+ */
+
 
 /* Optional: If you want Quasar brand tokens to visually match, keep these SASS values
    aligned in quasar-variables.sass (already present in your repo). */
@@ -207,17 +230,28 @@ body {
    5) Home – features, menu highlights, parallax
    ============================= */
 /* Feature cards */
-.feature-card {
-  text-align: left;
+/* Equal-height features */
+.feature-card{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
-.feature-icon {
-  background: linear-gradient(
-    135deg,
-    var(--coffee-caramel),
-    var(--coffee-espresso)
-  );
+
+/* Push the description to the bottom so tops align nicely */
+.feature-desc{
+  /* optional: keep rows tidy with a clamp */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* (you already have) brand gradient on the icon */
+.feature-icon{
+  background: linear-gradient(180deg, var(--coffee-sand), var(--coffee-bark));
   color: #fff;
 }
+
 
 /* Menu highlights */
 .menu-card .img-wrap {
@@ -231,9 +265,13 @@ body {
 }
 
 /* Parallax readability glaze */
+/* Your project already has this, but ensure it exists */
 .parallax-overlay {
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25));
+  background: linear-gradient(90deg, rgba(0,0,0,.25), rgba(0,0,0,.25));
 }
+
+/* Nice rounded box feel on the overlay container */
+.rounded-borders { border-radius: 16px; }
 
 /* =============================
    6) Menu Page – filters & grid
@@ -409,4 +447,35 @@ body {
   background: rgba(0, 0, 0, 0.45);
   color: #fff;
   font-weight: 700;
+}
+
+/* HomePage.vue <style lang="scss" scoped> (append near bottom) */
+.social-btn {
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  border: 2px solid rgba(255,255,255,.18);
+}
+.social-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,.22); }
+
+/* Brand tints on borders (keeps our indigo/gold theme visible on dark) */
+.social-btn.fb { border-color: rgba(24,119,242,.7); }
+.social-btn.ig { border-color: rgba(255, 0, 162, 0.7); }
+.social-btn.tt { border-color: rgba(255, 255, 0, 0.7); }
+.social-btn.gm { border-color: rgba(52,168,83,.7); }
+
+/* Icon size nudge */
+.social-btn :deep(i) { font-size: 22px; }
+
+/* Append to HomePage.vue <style lang="scss" scoped> */
+.ws-card { border-color: var(--border); }
+.ws-chip {
+  border: 1px solid var(--border);
+  /* subtle brand tint on hover */
+  transition: background .16s ease, transform .16s ease;
+}
+.ws-chip:hover { background: color-mix(in oklab, var(--coffee-sand) 14%, white); transform: translateY(-1px); }
+
+.social-section {
+   background: var(--coffee-caramel);
 }

@@ -4,7 +4,6 @@
   <section id="hero" class="relative-position hero-header">
     <div class="hero-header-bg" :style="heroBgStyle" role="img" aria-label="Cafe interior hero image"></div>
 
-    <!-- Toolbar inside hero -->
     <div class="hero-toolbar container" role="navigation" aria-label="Primary">
       <q-toolbar class="q-px-none">
         <q-toolbar-title>
@@ -13,19 +12,18 @@
             <span class="q-ml-sm text-weight-bold brand-title">La Luna Moon Cafe</span>
           </RouterLink>
         </q-toolbar-title>
-
         <q-tabs class="menu-items" shrink indicator-color="secondary" active-color="secondary">
-          <q-route-tab to="/" label="Home" no-caps class="text-white tab-link" aria-label="Home" />
-          <q-route-tab to="/menu" label="Menu" no-caps class="text-white tab-link" aria-label="Menu" />
-          <q-route-tab to="/about" label="About" no-caps class="text-white tab-link" aria-label="About" />
-          <q-route-tab to="/contact-us" label="Contact Us" no-caps class="text-white tab-link" aria-label="Contact Us" />
+          <q-route-tab to="/" label="Home" no-caps class="text-white tab-link" />
+          <q-route-tab to="/menu" label="Menu" no-caps class="text-white tab-link" />
+          <q-route-tab to="/about" label="About" no-caps class="text-white tab-link" />
+          <q-route-tab to="/contact-us" label="Contact Us" no-caps class="text-white tab-link" />
         </q-tabs>
       </q-toolbar>
     </div>
 
     <div class="absolute-full flex flex-center">
       <div class="hero-header-content text-center text-white">
-        <h1 class="text-h2 text-weight-bolder q-mb-xs q-mt-none leading-tight">About La luna</h1>
+        <h1 class="text-h2 text-weight-bolder q-mb-xs q-mt-none leading-tight">About La Luna</h1>
         <div class="text-subtitle1 opacity-90">Know more about the cafe.</div>
       </div>
     </div>
@@ -136,23 +134,6 @@
             <div class="text-caption text-grey-7">{{ t.role }}</div>
             <q-card-section class="text-body2 text-grey-8">{{ t.blurb }}</q-card-section>
           </q-card>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- AWARDS / PRESS -->
-  <section class="q-py-xl container">
-    <div class="row items-center justify-between q-col-gutter-lg">
-      <div class="col-12 col-md-5">
-        <h2 class="text-h5 q-mb-sm">Recognition</h2>
-        <ul class="text-body2 text-grey-8 q-pl-md awards-list">
-          <li v-for="a in awards" :key="a">{{ a }}</li>
-        </ul>
-      </div>
-      <div class="col-12 col-md-6">
-        <div class="row q-col-gutter-md items-center press-cloud">
-          <q-badge v-for="p in press" :key="p" color="grey-3" text-color="grey-8" class="q-pa-sm hover-lift">{{ p }}</q-badge>
         </div>
       </div>
     </div>

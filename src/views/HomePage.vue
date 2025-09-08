@@ -78,9 +78,14 @@
           <q-btn outline text-color="white" no-caps label="Reserve a Table" icon="event" />
         </div> -->
         <div class="q-mt-lg">
-<q-badge color="green-6" text-color="white" class="q-pa-sm" aria-label="Today hours">
-  Hours today: {{ todayHoursText }}
-</q-badge>
+          <q-badge
+            color="green-6"
+            text-color="white"
+            class="q-pa-sm"
+            aria-label="Today hours"
+          >
+            Hours today: {{ todayHoursText }}
+          </q-badge>
         </div>
       </div>
     </div>
@@ -97,33 +102,40 @@
     </svg>
   </section>
 
-<!-- FEATURES ROW -->
-<section class="q-py-xl container">
-  <!-- add items-stretch -->
-  <div class="row q-col-gutter-lg items-stretch">
-    <div v-for="(f, i) in features" :key="i" class="col-12 col-sm-6 col-md-3">
-      <!-- add full-height -->
-      <q-card flat bordered class="q-pa-lg feature-card hover-lift full-height">
-        <q-avatar class="feature-icon q-mb-sm" size="48px"><q-icon :name="f.icon" size="24px" /></q-avatar>
-        <div class="text-subtitle1 text-weight-bold q-mb-xs">{{ f.title }}</div>
-        <div class="text-body2 feature-desc text-grey-7">{{ f.desc }}</div>
-      </q-card>
+  <!-- FEATURES ROW -->
+  <section class="q-py-xl container">
+    <!-- add items-stretch -->
+    <div class="row q-col-gutter-lg items-stretch">
+      <div v-for="(f, i) in features" :key="i" class="col-12 col-sm-6 col-md-3">
+        <!-- add full-height -->
+        <q-card
+          flat
+          bordered
+          class="q-pa-lg feature-card hover-lift full-height"
+        >
+          <q-avatar class="feature-icon q-mb-sm" size="48px"
+            ><q-icon :name="f.icon" size="24px"
+          /></q-avatar>
+          <div class="text-subtitle1 text-weight-bold q-mb-xs">
+            {{ f.title }}
+          </div>
+          <div class="text-body2 feature-desc text-grey-7">{{ f.desc }}</div>
+        </q-card>
+      </div>
     </div>
-  </div>
-</section>
-
+  </section>
 
   <!-- ABOUT SPLIT -->
-  <section class="q-py-xl bg-grey-1">
+  <section class="q-py-xl background-secondary">
     <div class="container row items-center q-col-gutter-xl">
       <div class="col-12 col-md-6">
-    <q-img
-      :src="aboutImg"
-      :ratio="4/3"
-      spinner-color="secondary"
-      :img-style="{ objectFit: 'cover' }"
-      alt="Cozy café table setup for working and studying"
-    />
+        <q-img
+          :src="aboutImg"
+          :ratio="4 / 3"
+          spinner-color="secondary"
+          :img-style="{ objectFit: 'cover' }"
+          alt="Cozy café table setup for working and studying"
+        />
       </div>
       <div class="col-12 col-md-6">
         <div class="text-overline">Our story</div>
@@ -182,41 +194,38 @@
     </div>
   </section>
 
-<!-- PARALLAX — Why guests love us -->
-<q-parallax :height="300" :src="parallaxImg">
-  <!-- Make the overlay fill & center -->
-  <div class="absolute-full flex items-center text-white">
-    <!-- Keep your soft tint via .parallax-overlay, and constrain width with .container -->
-    <div class="container parallax-overlay q-pa-lg rounded-borders">
-      <div class="text-h5 text-weight-bolder text-center q-mb-md">
-        Why customers love us
-      </div>
-
-      <div class="row q-col-gutter-lg justify-around text-center">
-        <div class="col-12 col-md-4">
-          <q-icon name="fa-solid fa-moon" size="lg" class="q-mb-xs" />
-          <div class="text-subtitle1 text-weight-bold">Moon-lit vibe</div>
-          <div class="opacity-90">Soft light, cozy corners.</div>
+  <!-- PARALLAX — Why guests love us -->
+  <q-parallax :height="300" :src="parallaxImg">
+    <!-- Make the overlay fill & center -->
+    <div class="absolute-full flex items-center text-white">
+      <!-- Keep your soft tint via .parallax-overlay, and constrain width with .container -->
+      <div class="container parallax-overlay q-pa-lg rounded-borders">
+        <div class="text-h5 text-weight-bolder text-center q-mb-md">
+          Why customers love us
         </div>
 
-        <div class="col-12 col-md-4">
-          <q-icon name="fa-solid fa-mug-saucer" size="lg" class="q-mb-xs" />
-          <div class="text-subtitle1 text-weight-bold">Comfort flavors</div>
-          <div class="opacity-90">Small-batch roasts & bakes.</div>
-        </div>
+        <div class="row q-col-gutter-lg justify-around text-center">
+          <div class="col-12 col-md-4">
+            <q-icon name="fa-solid fa-moon" size="lg" class="q-mb-xs" />
+            <div class="text-subtitle1 text-weight-bold">Moon-lit vibe</div>
+            <div class="opacity-90">Soft light, cozy corners.</div>
+          </div>
 
-        <div class="col-12 col-md-4">
-          <q-icon name="fa-solid fa-wifi" size="lg" class="q-mb-xs" />
-          <div class="text-subtitle1 text-weight-bold">Work-friendly</div>
-          <div class="opacity-90">Fast Wi-Fi, outlets, quiet hours.</div>
+          <div class="col-12 col-md-4">
+            <q-icon name="fa-solid fa-mug-saucer" size="lg" class="q-mb-xs" />
+            <div class="text-subtitle1 text-weight-bold">Comfort flavors</div>
+            <div class="opacity-90">Small-batch roasts & bakes.</div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <q-icon name="fa-solid fa-wifi" size="lg" class="q-mb-xs" />
+            <div class="text-subtitle1 text-weight-bold">Work-friendly</div>
+            <div class="opacity-90">Fast Wi-Fi, outlets, quiet hours.</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</q-parallax>
-
-
-
+  </q-parallax>
 
   <!-- TESTIMONIALS -->
   <section class="q-py-xl bg-grey-1">
@@ -245,7 +254,7 @@
               /></q-avatar>
               <div>
                 <div class="text-subtitle2">{{ t.name }}</div>
-                <div class="text-caption text-grey">Local Guide</div>
+                <div class="text-caption text-grey">{{ t.caption }}</div>
               </div>
             </q-card-section>
           </q-card>
@@ -255,8 +264,9 @@
   </section>
 
   <!-- WORK & STUDY WELCOME -->
-  <section id="workstudy" class="q-py-xl container">
-    <div class="row items-center q-col-gutter-xl">
+  <section id="workstudy" class="q-py-xl background-secondary">
+<div class="container">
+      <div class="row items-center q-col-gutter-xl">
       <!-- Copy + amenities -->
       <div class="col-12 col-md-7">
         <h2 class="text-h4 q-mb-sm">Work & study welcome</h2>
@@ -330,19 +340,18 @@
       </div>
 
       <!-- RIGHT COLUMN — Stock image (with fallback + spinner) -->
-<div class="col-12 col-md-5">
-  <q-card flat bordered class="hover-lift ws-card q-pa-none">
-    <q-img
-      :src="workStudySrc"
-      :ratio="4/3"
-      spinner-color="secondary"
-      :img-style="{ objectFit: 'cover' }"
-      @error="workStudySrc = aboutImg"
-      alt="Cozy café table setup for working and studying"
-    />
-  </q-card>
-</div>
-
+      <div class="col-12 col-md-5">
+        <q-card flat bordered class="hover-lift ws-card q-pa-none">
+          <q-img
+            :src="workStudySrc"
+            :ratio="4 / 3"
+            spinner-color="secondary"
+            :img-style="{ objectFit: 'cover' }"
+            @error="workStudySrc = aboutImg"
+            alt="Cozy café table setup for working and studying"
+          />
+        </q-card>
+      </div>
     </div>
 
     <!-- House rules modal -->
@@ -365,6 +374,7 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
+</div>
   </section>
 
   <!-- GALLERY / IG GRID -->
@@ -445,52 +455,43 @@
     </div>
   </section>
 
-  <!-- CONTACT STRIP -->
-  <section id="contact" class="q-py-lg">
-    <div class="container row items-center justify-between">
-      <div>
-        <div class="text-h6 text-weight-bold">Say hello</div>
-        <div class="text-body1">
-          Call (02) 1234-5678 · WhatsApp +63 900 123 4567
-        </div>
-      </div>
-      <div class="row q-gutter-sm">
-        <q-btn outline color="primary" icon="call" no-caps label="Call" />
-        <q-btn
-          outline
-          color="primary"
-          icon="whatsapp"
-          no-caps
-          label="WhatsApp"
-        />
-        <q-btn
-          color="primary"
-          unelevated
-          no-caps
-          label="Directions"
-          icon="pin_drop"
-        />
-      </div>
-    </div>
-  </section>
-  <q-dialog v-model="showRules" transition-show="jump-down" transition-hide="jump-up">
-  <q-card style="max-width:640px" class="q-pa-none" aria-label="House rules dialog">
-    <q-card-section class="text-h6 text-weight-bold">House rules (Work & Study)</q-card-section>
-    <q-separator />
-    <q-card-section class="text-body2">
-      <ul class="q-pl-md q-mt-none q-mb-none">
-        <li>Keep voices low; take long calls outdoors when possible.</li>
-        <li>One order per person every 2 hours during peak times.</li>
-        <li>Sockets are first-come; please bring your own adapter.</li>
-        <li>Please be mindful of shared seating during busy hours.</li>
-      </ul>
-    </q-card-section>
-    <q-card-actions align="right">
-      <q-btn flat label="Close" color="primary" v-close-popup />
-    </q-card-actions>
-  </q-card>
-</q-dialog>
+<!-- WELCOME QUOTE STRIP -->
+<section id="welcome-quote" class="q-py-md quote-strip">
+  <div class="container text-center">
+    <q-icon name="format_quote" size="md" class="q-mr-sm text-secondary" />
+    <span class="text-body1 text-weight-medium">
+      “Good coffee. Good mood. Welcome to La Luna Moon Café.”
+    </span>
+  </div>
+</section>
 
+  <q-dialog
+    v-model="showRules"
+    transition-show="jump-down"
+    transition-hide="jump-up"
+  >
+    <q-card
+      style="max-width: 640px"
+      class="q-pa-none"
+      aria-label="House rules dialog"
+    >
+      <q-card-section class="text-h6 text-weight-bold"
+        >House rules (Work & Study)</q-card-section
+      >
+      <q-separator />
+      <q-card-section class="text-body2">
+        <ul class="q-pl-md q-mt-none q-mb-none">
+          <li>Keep voices low; take long calls outdoors when possible.</li>
+          <li>One order per person every 2 hours during peak times.</li>
+          <li>Sockets are first-come; please bring your own adapter.</li>
+          <li>Please be mindful of shared seating during busy hours.</li>
+        </ul>
+      </q-card-section>
+      <q-card-actions align="right">
+        <q-btn flat label="Close" color="primary" v-close-popup />
+      </q-card-actions>
+    </q-card>
+  </q-dialog>
 </template>
 
 <script setup>
@@ -504,7 +505,7 @@ const aboutImg =
 const parallaxImg =
   "https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=1600&auto=format&fit=crop";
 const workStudySrc = ref(
-  'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80'
+  "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80"
 );
 
 // coffee overlay for readability
@@ -610,32 +611,35 @@ const stats = [
 
 const testimonials = [
   {
-    name: "J. Santos",
-    quote: "Best flat white in the city.",
+    name: "Camille T.",
+    quote: "The Cozy Atmosphere, Free Wi-Fi, and Friendly Staff",
+    caption: "Facebook",
     avatar: "https://i.pravatar.cc/80?img=5",
   },
   {
-    name: "A. Lee",
-    quote: "Weekend brunch worth lining up for.",
+    name: "Kathryn M.",
+    quote: "The Ambience is ideal for both work and relaxation",
+    caption: "Instagram",
     avatar: "https://i.pravatar.cc/80?img=15",
   },
   {
-    name: "M. Cruz",
-    quote: "Cozy space and friendly baristas.",
+    name: "Carla C.",
+    quote: "The drinks are refreshing, and the food is always delicious",
+    caption: "Tiktok",
     avatar: "https://i.pravatar.cc/80?img=25",
   },
 ];
 
 const gallery = [
-  "https://images.unsplash.com/photo-1521017432531-fbd92d1cfb72?q=80&w=1200&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1200&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1517705008128-361805f42e86?q=80&w=1200&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=1200&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1518131678677-a9b1e8e91bb0?q=80&w=1200&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=1200&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop",
-];
+  new URL('@/assets/images/gallery/1.jpg', import.meta.url).href,
+  new URL('@/assets/images/gallery/2.jpg', import.meta.url).href,
+  new URL('@/assets/images/gallery/3.jpg', import.meta.url).href,
+  new URL('@/assets/images/gallery/4.jpg', import.meta.url).href,
+  new URL('@/assets/images/gallery/5.jpg', import.meta.url).href,
+  new URL('@/assets/images/gallery/6.jpg', import.meta.url).href,
+  new URL('@/assets/images/gallery/7.jpg', import.meta.url).href,
+  new URL('@/assets/images/gallery/8.jpg', import.meta.url).href
+]
 
 // Opening hours helper (Mon=1..Sun=0)
 const schedule = {
@@ -704,9 +708,9 @@ const nextOpen = computed(() =>
 const socials = {
   fb: "https://facebook.com/profile.php?id=61577042127849", // TODO: replace with real handle
   ig: "https://instagram.com/lalunamooncafe", // TODO
-  tt: "https://tiktok.com/@lalunamooncafe", // TODO
-  gmaps: "https://maps.app.goo.gl/YOUR_PLACE_ID", // TODO
-  greview: "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID", // TODO
+  tt: "https://www.tiktok.com/@lalunamoon.cafe?lang=en", // TODO
+gmaps: "https://maps.app.goo.gl/Mj43TgpPhfZ594Ti8",
+  greview: "https://search.google.com/local/writereview?placeid=ChIJ-ymm_oCxlzMR8KM3wOzIkUA",
 };
 
 const todayHoursText = computed(() => {

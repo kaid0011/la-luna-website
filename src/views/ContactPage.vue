@@ -1,5 +1,5 @@
 <template>
-  <!-- HERO (nav kept inside this first section) -->
+  <!-- HERO -->
   <section id="hero" class="relative-position hero-header">
     <div class="hero-header-bg" :style="heroBgStyle" role="img" aria-label="Cafe interior hero image"></div>
 
@@ -23,7 +23,7 @@
     <div class="absolute-full flex flex-center">
       <div class="hero-header-content text-center text-white">
         <h1 class="text-h2 text-weight-bolder q-mb-xs q-mt-none leading-tight">Contact Us</h1>
-        <div class="text-subtitle1 opacity-90">Questions, bookings, or feedback.</div>
+        <div class="text-subtitle1 opacity-90">{{ valueProp }}</div>
       </div>
     </div>
 
@@ -35,99 +35,89 @@
   <!-- CONTENT -->
   <section class="q-py-xl container">
     <div class="row q-col-gutter-xl">
-      <!-- FORM -->
+      <!-- LEFT: Quick Actions, Socials, Proof -->
       <div class="col-12 col-md-7">
+        <!-- Quick Actions -->
         <q-card flat bordered class="q-pa-lg hover-lift contact-card">
-          <div class="text-h6 text-weight-bold q-mb-md">Send us a message</div>
-          <q-form @submit="onSubmit" @reset="onReset" class="row q-col-gutter-md">
-            <q-input v-model="form.name" label="Full name" outlined dense class="col-12 col-sm-6" :rules="[req]">
-              <template #prepend><q-icon name="person" /></template>
-            </q-input>
-            <q-input v-model="form.email" label="Email" type="email" outlined dense class="col-12 col-sm-6" :rules="[req, emailRule]">
-              <template #prepend><q-icon name="mail" /></template>
-            </q-input>
-            <q-input v-model="form.phone" label="Phone (optional)" type="tel" outlined dense class="col-12 col-sm-6">
-              <template #prepend><q-icon name="call" /></template>
-            </q-input>
-            <q-select v-model="form.topic" :options="topics" label="Topic" outlined dense emit-value map-options class="col-12 col-sm-6" :rules="[req]">
-              <template #prepend><q-icon name="chat_bubble_outline" /></template>
-            </q-select>
-            <q-input v-model="form.message" label="Message" type="textarea" outlined :autogrow="true" class="col-12" :rules="[req, msgLen]">
-              <template #prepend><q-icon name="edit" /></template>
-            </q-input>
+          <div class="row items-center justify-between q-mb-sm">
+            <div class="text-h6 text-weight-bold">Get in touch</div>
+            <q-badge :color="isOpen ? 'positive' : 'negative'">{{ isOpen ? 'Open now' : 'Closed' }}</q-badge>
+          </div>
 
-            <div class="col-12 row items-center">
-              <q-checkbox v-model="form.consent" :rules="[v=>v||'Please accept.']" color="secondary" />
-              <div class="q-ml-sm text-caption">I agree to the <RouterLink to="/privacy" class="text-secondary">privacy policy</RouterLink>.</div>
+          <!-- Actions -->
+          <div class="row q-col-gutter-sm q-mt-sm">
+            <div class="col-12 col-sm-6" v-for="(p,idx) in phones" :key="idx">
+              <q-btn outline no-caps class="full-width contact-pill" :href="`tel:${p}`" icon="call" :label="`Call ${formatPhone(p)}`" />
             </div>
+            <div class="col-12 col-sm-6">
+              <q-btn outline no-caps class="full-width contact-pill" :href="`mailto:${email}`" icon="mail" label="Email us" />
+            </div>
+            <div class="col-12 col-sm-6">
+              <q-btn color="primary" unelevated no-caps class="full-width" icon="near_me" :href="maps" target="_blank" label="Get directions" />
+            </div>
+          </div>
 
-            <div class="col-12 row q-gutter-sm q-mt-sm">
-              <q-btn type="submit" color="primary" unelevated no-caps label="Send" :loading="sending" icon="send" />
-              <q-btn type="reset" flat color="primary" no-caps label="Reset" />
-            </div>
-          </q-form>
+          <!-- Address -->
+          <q-separator class="q-my-md" />
+          <div class="row items-center text-weight-bold">
+            <q-icon name="place" class="q-mr-xs" size="sm"/><div>Location</div>
+          </div>
+            <div class="text-body2 text-grey-8 q-mt-sm q-ml-md">{{ address }}</div>
+            <div class="text-body2 text-grey-8 q-ml-md">Landmark: {{ landmark }}</div>
+
+          <!-- Socials -->
+          <q-separator class="q-my-md" />
+          <div class="row q-gutter-sm">
+            <q-btn flat icon="mdi-facebook" no-caps label="Facebook" :href="facebook.url" target="_blank" />
+            <q-btn flat icon="mdi-instagram" no-caps label="Instagram" :href="instagram.url" target="_blank" />
+            <q-btn flat icon="mdi-tiktok" no-caps label="TikTok" :href="tiktok.url" target="_blank" />
+          </div>
+
+          <!-- Proof & Assets -->
+          <div class="row q-gutter-sm q-mt-md">
+            <q-btn outline icon="collections" no-caps label="Menu Photos" :href="links.menuPhotos" target="_blank" />
+            <q-btn outline icon="storefront" no-caps label="Ambience Photos" :href="links.ambiencePhotos" target="_blank" />
+            <q-btn outline icon="reviews" no-caps label="Reviews Proof" :href="links.reviewsProof" target="_blank" />
+          </div>
         </q-card>
 
-        <q-banner v-if="sent" class="q-mt-md bg-positive text-white rounded-borders">
-          Thanks! We've received your message and will reply within 24 hours.
-        </q-banner>
-      </div>
-
-      <!-- DETAILS / MAP -->
-      <div class="col-12 col-md-5">
-        <q-card flat bordered class="q-pa-lg q-mb-lg hover-lift">
-          <div class="text-subtitle1 text-weight-bold">Get in touch</div>
-          <q-list class="contact-list q-mt-sm">
-            <q-item clickable tag="a" :href="`tel:${active.phone}`">
-              <q-item-section avatar><q-icon name="call" /></q-item-section>
+        <!-- Reviews (selected quotes) -->
+        <q-card flat bordered class="q-pa-lg q-mt-lg hover-lift">
+          <div class="text-subtitle1 text-weight-bold q-mb-xs">What guests say</div>
+          <div class="text-caption text-grey-7 q-mb-md">From Facebook, Instagram, and TikTok</div>
+          <q-list separator class="rounded-borders bg-white">
+            <q-item v-for="(r,i) in reviews" :key="i">
+              <q-item-section avatar><q-icon name="format_quote" /></q-item-section>
               <q-item-section>
-                <q-item-label>Call</q-item-label>
-                <q-item-label caption>{{ active.phone }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item clickable tag="a" :href="waHref" target="_blank">
-              <q-item-section avatar><q-icon name="whatsapp" /></q-item-section>
-              <q-item-section>
-                <q-item-label>WhatsApp</q-item-label>
-                <q-item-label caption>{{ active.whatsApp }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item clickable tag="a" :href="`mailto:${active.email}`">
-              <q-item-section avatar><q-icon name="mail" /></q-item-section>
-              <q-item-section>
-                <q-item-label>Email</q-item-label>
-                <q-item-label caption>{{ active.email }}</q-item-label>
+                <q-item-label class="text-body2">“{{ r.text }}”</q-item-label>
+                <q-item-label caption class="q-mt-xs">— {{ r.source }}</q-item-label>
               </q-item-section>
             </q-item>
           </q-list>
-
-          <div class="row q-gutter-sm q-mt-md">
-            <q-btn outline color="primary" icon="call" no-caps :href="`tel:${active.phone}`" label="Call" />
-            <q-btn outline color="primary" icon="whatsapp" no-caps :href="waHref" target="_blank" label="WhatsApp" />
-            <q-btn color="primary" unelevated no-caps icon="near_me" :href="active.maps" target="_blank" label="Directions" />
-          </div>
         </q-card>
+      </div>
 
+      <!-- RIGHT: Hours & Map -->
+      <div class="col-12 col-md-5">
         <q-card flat bordered class="q-pa-lg hover-lift">
-          <div class="row items-center justify-between">
-            <div class="text-subtitle1 text-weight-bold">Visit us</div>
-            <q-select v-model="locKey" :options="locationOptions" dense outlined style="min-width: 200px"/>
+          <div class="row items-center justify-between q-mb-sm">
+            <div class="text-subtitle1 text-weight-bold">Opening hours</div>
+            <q-chip class="text-body2 bg-green-2">{{ todayLabel }} • {{ todayHours }}</q-chip>
           </div>
-          <div class="q-mt-sm">
-            <div class="text-body1 text-weight-bold">{{ active.name }}</div>
-            <div class="text-body2 text-grey-8">{{ active.address }}</div>
-            <div class="text-caption q-mt-xs">Hours: {{ active.hours }}</div>
-          </div>
+
+          <q-markup-table dense flat bordered class="rounded-borders">
+            <tbody>
+              <tr v-for="d in weekOrder" :key="d">
+                <td class="text-weight-medium" style="width:120px">{{ d }}</td>
+                <td>{{ hoursWeekly[d] || 'Closed' }}</td>
+              </tr>
+            </tbody>
+          </q-markup-table>
+
           <div class="q-mt-md rounded-borders overflow-hidden map-wrap">
             <iframe
-              :src="active.mapEmbed"
-              width="100%"
-              height="260"
-              style="border:0;"
-              allowfullscreen
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="Map"
+              :src="mapEmbed" width="100%" height="260" style="border:0"
+              allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map"
             ></iframe>
           </div>
         </q-card>
@@ -135,83 +125,102 @@
     </div>
   </section>
 
-  <!-- FAQ STRIP -->
-  <section class="bg-grey-1 q-py-xl">
-    <div class="container">
-      <div class="text-center q-mb-lg">
-        <div class="text-overline">Good to know</div>
-        <h2 class="text-h4">Quick answers</h2>
-      </div>
-      <q-list bordered separator class="rounded-borders bg-white">
-        <q-expansion-item v-for="(f,i) in faqs" :key="i" expand-separator :label="f.q" icon="help_outline">
-          <q-card><q-card-section class="text-body2 text-grey-8">{{ f.a }}</q-card-section></q-card>
-        </q-expansion-item>
-      </q-list>
-    </div>
-  </section>
 </template>
 
 <script setup>
-import { ref, reactive, computed } from 'vue'
+import { computed } from 'vue'
 
+/** ===== HERO ===== */
 const heroImg = new URL('@/assets/images/home-hero.jpg', import.meta.url).href
-const heroBgStyle = computed(() => ({ backgroundImage: `linear-gradient(rgba(52,17,0,.55), rgba(52,17,0,.25)), url('${heroImg}')` }))
+const heroBgStyle = computed(() => ({
+  backgroundImage: `linear-gradient(rgba(52,17,0,.55), rgba(52,17,0,.25)), url('${heroImg}')`
+}))
 
-// --- Form state ---
-const form = reactive({ name: '', email: '', phone: '', topic: 'general', message: '', consent: false })
-const topics = [
-  { label: 'General inquiry', value: 'general' },
-  { label: 'Catering', value: 'catering' },
-  { label: 'Reservation', value: 'reservation' },
-  { label: 'Feedback', value: 'feedback' },
-  { label: 'Careers', value: 'careers' }
-]
-const sending = ref(false)
-const sent = ref(false)
-function req (v){ return !!v || 'Required' }
-function emailRule (v){ return (v && v.includes('@') && v.includes('.')) || 'Invalid email' }
-function msgLen (v){ return (v && v.length >= 10) || 'Min 10 characters' }
-async function onSubmit(){ sending.value = true; const payload = { ...form, timestamp: new Date().toISOString() }; console.log('Contact payload', payload); await new Promise(r => setTimeout(r, 800)); sent.value = true; sending.value = false }
-function onReset(){ Object.assign(form, { name: '', email: '', phone: '', topic: 'general', message: '', consent: false }); sent.value = false }
+/** ===== CLIENT DATA ===== */
+const valueProp = 'A moonlit retreat, where coffee and comfort always meet.'
+const address = '223 C Gold, Millionaires Village, Novaliches, Quezon City, 1124'
+const landmark = 'Near Savemore, Beside BPI'
+const phones = ['09322422969', '09757919153']
+const email = 'lalunamooncafe@gmail.com'
 
-// --- Locations (Novaliches primary) ---
-const locations = {
-  main: {
-    key: 'main',
-    name: 'Main Cafe — Novaliches',
-    phone: '(02) 1234 5678',
-    whatsApp: '+63 900 123 4567',
-    email: 'lalunamooncafe@gmail.com',
-    address: '223 C Gold, Quezon City, Philippines, 1124',
-    hours: 'Mon–Thu 7:00–21:00 • Fri–Sun 7:00–22:00',
-    maps: 'https://maps.google.com/?q=Novaliches,QC',
-    mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3858.827128047782!2d121.03408310948221!3d14.722363685719275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b180fea629fb%3A0x4091c8ecc037a3f0!2sLa%20Luna%20Moon%20Cafe!5e0!3m2!1sen!2sph!4v1756787238122!5m2!1sen!2sph'
-  },
-  branch: {
-    key: 'branch',
-    name: 'Branch — Novaliches',
-    phone: '(02) 1234 5678',
-    whatsApp: '+63 900 123 4567',
-    email: 'lalunamooncafe@gmail.com',
-    address: '223 C Gold, Quezon City, Philippines, 1124',
-    hours: 'Mon–Thu 7:00–21:00 • Fri–Sun 7:00–22:00',
-    maps: 'https://maps.google.com/?q=Novaliches,QC',
-    mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3858.827128047782!2d121.03408310948221!3d14.722363685719275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b180fea629fb%3A0x4091c8ecc037a3f0!2sLa%20Luna%20Moon%20Cafe!5e0!3m2!1sen!2sph!4v1756787238122!5m2!1sen!2sph'
-  }
+const facebook = {
+  handle: '@La Luna Moon Cafe',
+  url: 'https://www.facebook.com/profile.php?id=61577042127849'
+}
+const instagram = {
+  handle: '@lalunamooncafe',
+  url: 'https://www.instagram.com/lalunamooncafe/'
+}
+const tiktok = {
+  handle: '@lalunamoon.cafe',
+  url: 'https://www.tiktok.com/@lalunamoon.cafe?lang=en'
 }
 
-const locKey = ref('main')
-const locationOptions = [
-  { label: 'Main Cafe — Novaliches', value: 'main' },
-  { label: 'Branch — Novaliches', value: 'branch' }
-]
-const active = computed(() => locations[locKey.value])
-const waHref = computed(() => { const digits = active.value.whatsApp.split('').filter(c => c >= '0' && c <= '9').join(''); const msg = encodeURIComponent('Hi! I have a question about ' + form.topic); return `https://wa.me/${digits}?text=${msg}` })
+const links = {
+  menuPhotos: 'https://drive.google.com/drive/folders/1FuTwSsujsfnCShXnBa_LlUstaWzXTc7Y?usp=drive_link',
+  ambiencePhotos: 'https://drive.google.com/drive/folders/1FuTwSsujsfnCShXnBa_LlUstaWzXTc7Y?usp=drive_link',
+  reviewsProof: 'https://drive.google.com/drive/folders/1SsEUY_YGKw4M4m3QfTtR3o-EXAMPLE' // replace exact link
+}
 
-const faqs = [
-  { q: 'Do you take reservations?', a: 'Weekdays only, until 6 PM. Weekends are walk-in; join the waitlist on arrival.' },
-  { q: 'Delivery area?', a: 'Within 3 km via GrabFood / Foodpanda; pickup available from 7 AM.' },
-  { q: 'Allergens & dietary options?', a: 'Ask our team; nut-free and vegan options are labeled on the menu.' },
-  { q: 'Pet-friendly?', a: 'Yes, outdoor seating only. Water bowls available.' }
+/** ===== REVIEWS ===== */
+const reviews = [
+  { text: 'The cozy atmosphere, free Wi-Fi, and friendly staff.', source: 'Camille T. (Facebook)' },
+  { text: 'Ambience is ideal for both work and relaxation.', source: 'Kathlyn M. (Instagram)' },
+  { text: 'Drinks are refreshing, food is always delicious.', source: 'Carla C. (TikTok)' }
 ]
+
+/** ===== HOURS ===== */
+const hoursWeekly = {
+  Mon: '11:00 AM – 10:00 PM',
+  Tue: '11:00 AM – 10:00 PM',
+  Wed: '11:00 AM – 10:00 PM',
+  Thu: '11:00 AM – 10:00 PM',
+  Fri: '10:00 AM – 12:00 AM',
+  Sat: '10:00 AM – 12:00 AM',
+  Sun: '10:00 AM – 12:00 AM'
+}
+const weekOrder = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
+
+/** ===== MAP ===== */
+const maps = 'https://maps.google.com/?q=223%20C%20Gold,%20Millionaires%20Village,%20Novaliches,%20Quezon%20City'
+const mapEmbed =
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3858.827128047782!2d121.03408310948221!3d14.722363685719275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b180fea629fb%3A0x4091c8ecc037a3f0!2sLa%20Luna%20Moon%20Cafe!5e0!3m2!1sen!2sph!4v1756787238122!5m2!1sen!2sph'
+
+/** ===== COMPUTEDS ===== */
+const todayLabel = (() => ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][new Date().getDay()])()
+const todayHours = computed(() => hoursWeekly[todayLabel] || 'Closed')
+
+const isOpen = computed(() => {
+  const raw = hoursWeekly[todayLabel]
+  if (!raw || raw.toLowerCase() === 'closed') return false
+  const [open, close] = raw.split('–').map(s => s.trim())
+  const toMin = (t) => {
+    const [time, mer] = t.split(' ')
+    let [h, m] = time.split(':').map(Number)
+    if (mer === 'PM' && h !== 12) h += 12
+    if (mer === 'AM' && h === 12) h = 0
+    return h * 60 + m
+  }
+  const openMin = toMin(open)
+  let closeMin = toMin(close)
+  const now = new Date()
+  const nowMin = now.getHours() * 60 + now.getMinutes()
+  if (close.includes('12:00 AM') || closeMin <= openMin) closeMin += 24 * 60
+  return nowMin >= openMin && nowMin <= closeMin
+})
+
+/** ===== HELPERS ===== */
+function formatPhone(p) {
+  return p.replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3')
+}
 </script>
+
+
+<style scoped>
+.hover-lift { transition: transform .2s ease, box-shadow .2s ease; }
+.hover-lift:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+.contact-pill { border-color: var(--coffee-sand); }
+.brand-title { letter-spacing: .5px; }
+.map-wrap { background: #f6f6f6; min-height: 260px; }
+.tab-link { opacity: .95; }
+</style>

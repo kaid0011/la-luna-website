@@ -76,18 +76,18 @@
   </section>
 
   <!-- QUOTE BLOCK -->
-  <section class="q-py-md">
-    <div class="container">
-      <q-card flat bordered class="q-my-md">
-        <q-card-section class="text-subtitle1 text-italic text-grey-8">
+<!-- 
+  <section id="welcome-quote" class="q-py-md quote-strip background-secondary">
+  <div class="container text-center">
+    <q-icon name="format_quote" size="md" class="q-mr-sm text-secondary" />
+    <span class="text-body1 text-weight-medium">
           “Under the moonlight, we brew more than coffee — we brew moments.”
-        </q-card-section>
-      </q-card>
-    </div>
-  </section>
+    </span>
+  </div>
+</section> -->
 
   <!-- HOURS & LOCATION -->
-  <section class="bg-grey-1 q-py-xl">
+  <section class=" background-secondary q-py-xl">
     <div class="container">
       <div class="text-center q-mb-lg">
         <div class="text-overline">Visit</div>
@@ -125,7 +125,7 @@
         <div class="col-12 col-md-5">
           <q-card flat bordered class="q-pa-md hover-lift">
             <div class="text-subtitle1 text-weight-bold">Address</div>
-            <div class="text-body2 text-grey-8">[Unit, Building, Street], Novaliches, Quezon City</div>
+            <div class="text-body2 text-grey-8">Millionaire's Village, 223 C Gold, Novaliches, Quezon City</div>
             <div class="row items-center q-gutter-sm q-mt-sm">
               <q-btn outline color="primary" icon="pin_drop" no-caps label="Directions" :href="gmaps" target="_blank" rel="noopener" />
               <q-btn outline color="primary" icon="star" no-caps label="Leave a review" :href="greview" target="_blank" rel="noopener" />
@@ -152,7 +152,8 @@
   </section>
 
   <!-- ROASTING / PROCESS -->
-  <section class="q-py-xl container">
+  <section class="q-py-xl background-secondary">
+<div class="container">
     <div class="text-center q-mb-lg">
       <div class="text-overline">Craft</div>
       <h2 class="text-h4">How we roast</h2>
@@ -167,10 +168,11 @@
         </q-card>
       </div>
     </div>
+</div>
   </section>
 
   <!-- TEAM GRID -->
-  <section class="bg-grey-1 q-py-xl">
+  <!-- <section class="bg-grey-1 q-py-xl">
     <div class="container">
       <div class="text-center q-mb-lg">
         <div class="text-overline">People</div>
@@ -187,7 +189,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- FAQ -->
   <section class="bg-grey-1 q-py-xl">
@@ -206,20 +208,31 @@
     </div>
   </section>
 
-  <!-- CTA STRIP -->
-  <section class="q-py-xl cta bg-dark text-white">
-    <div class="container row items-center justify-between">
-      <div>
-        <div class="text-h5 q-mb-xs">Come say hello ☕</div>
-        <div class="text-subtitle2 opacity-80">[Unit, Building, Street], [District, City] • Weekdays 11:00 AM – 10:00 PM • Fri–Sun 10:00 AM – 12:00 MN</div>
+<!-- CTA STRIP: Hospitality Pledge -->
+<section class="q-py-xl cta bg-dark text-white">
+  <div class="container">
+    <div class="text-h5 q-mb-xl text-center">Our little promises</div>
+    <div class="row q-col-gutter-lg text-center">
+      <div class="col-12 col-md-4">
+        <q-icon name="local_cafe" size="lg" class="q-mb-sm" />
+        <div class="text-subtitle2">Warmth first</div>
+        <div class="text-caption opacity-80">Smiles, not rush.</div>
       </div>
-      <div class="row q-gutter-sm">
-        <q-btn color="primary" unelevated no-caps label="Order Now" icon="shopping_cart" />
-        <q-btn outline color="white" no-caps label="Directions" icon="pin_drop" />
+      <div class="col-12 col-md-4">
+        <q-icon name="nightlight_round" size="lg" class="q-mb-sm" />
+        <div class="text-subtitle2">Cozy corners</div>
+        <div class="text-caption opacity-80">Light low, calm high.</div>
+      </div>
+      <div class="col-12 col-md-4">
+        <q-icon name="auto_awesome" size="lg" class="q-mb-sm" />
+        <div class="text-subtitle2">Made with care</div>
+        <div class="text-caption opacity-80">Small batches, big heart.</div>
       </div>
     </div>
-    <div class="cta-decor" aria-hidden="true"></div>
-  </section>
+  </div>
+  <div class="cta-decor" aria-hidden="true"></div>
+</section>
+
 </template>
 
 <script setup>
@@ -355,22 +368,12 @@ const team = [
   { name: 'Jo Cruz', role: 'Barista Trainer', avatar: 'https://i.pravatar.cc/160?img=45', blurb: 'Dial-ins, latte art, and guest education.' }
 ]
 
-const awards = [
-  'Top 10 Cafés in [City] — 2023',
-  'Food Hygiene: Grade A — 2024',
-  'Local Business Community Award — 2022'
-]
-
-const press = ['City Eats', 'Daily Brew', 'Local Tribune', 'Neighborhood Mag']
-
 const faqs = [
   { q: 'Do you take reservations?', a: 'Weekdays only, until 6 PM. Weekends are walk-in; join the waitlist on arrival.' },
   { q: 'Are you pet-friendly?', a: 'Yes, outdoor seats only. Water bowls available.' },
-  { q: 'Do you have Wi-Fi and sockets?', a: 'Wi-Fi is available; sockets are limited. On weekends we set a 2-hour limit.' },
-  { q: 'Allergens & dietary options?', a: 'Ask our team; nut-free and vegan options are labeled on the menu.' }
 ]
 
 // Links (replace with real IDs)
-const gmaps = 'https://maps.app.goo.gl/ChIJ-ymm_oCxlzMR8KM3wOzIkUA'
+const gmaps = 'https://maps.app.goo.gl/Mj43TgpPhfZ594Ti8'
 const greview = 'https://search.google.com/local/writereview?placeid=ChIJ-ymm_oCxlzMR8KM3wOzIkUA'
 </script>

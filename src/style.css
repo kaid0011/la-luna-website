@@ -15,6 +15,7 @@
 :root {
   /* Moonlit Espresso */
   --coffee-cream:   #FFF7E8; /* page bg (unchanged) */
+  --coffee-cream-2:   #f8ebd4; /* page bg (unchanged) */
   --coffee-sand:    #CFAB71; /* café gold / secondary */
   --coffee-caramel: #0F172A; /* PRIMARY UI (midnight indigo) */
   --coffee-espresso:#0F172A; /* headings / CTA (indigo) */
@@ -83,7 +84,9 @@ body {
 .leading-tight {
   line-height: 1.05;
 }
-
+.background-secondary {
+  background: var(--coffee-cream-2) !important;
+}
 /* Hover lift tokens used by many cards */
 .hover-lift {
   transition: transform 160ms ease, box-shadow 160ms ease;
@@ -248,7 +251,7 @@ body {
 
 /* (you already have) brand gradient on the icon */
 .feature-icon{
-  background: linear-gradient(180deg, var(--coffee-sand), var(--coffee-bark));
+  background: linear-gradient(180deg, var(--coffee-bark), var(--coffee-bark));
   color: #fff;
 }
 
@@ -456,6 +459,7 @@ body {
   transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
   border: 2px solid rgba(255,255,255,.18);
 }
+
 .social-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,.22); }
 
 /* Brand tints on borders (keeps our indigo/gold theme visible on dark) */
@@ -485,4 +489,12 @@ body {
   margin: 0 auto;
   min-height: 360px;   /* visible area while images/layout prepare */
   position: relative;
+}
+
+/* Style it softly, like a café blackboard */
+.quote-strip {
+  background: var(--coffee-cream, #fff7e8);
+  border-top: 1px solid rgba(0,0,0,.06);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  font-style: italic;
 }

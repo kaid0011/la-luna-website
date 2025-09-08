@@ -1,3 +1,4 @@
+// router/index.js
 import { createWebHistory, createRouter } from 'vue-router'
 
 import HomePage from '@/views/HomePage.vue'
@@ -17,6 +18,23 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    // 1) Back/forward: restore previous position
+    if (savedPosition) return savedPosition
+
+    // 2) Anchor links like /about#story
+    if (to.hash) {
+      return {
+        el: to.hash,
+        top: 0,
+        // set behavior to 'smooth' if you want a smooth scroll
+        // behavior: 'smooth'
+      }
+    }
+
+    // 3) Default: top of page
+    return { left: 0, top: 0 }
+  }
 })
 
-export default router;
+export default router

@@ -72,7 +72,7 @@
 
         <div class="row q-gutter-sm q-mt-sm">
           <q-btn outline color="white" no-caps icon="pin_drop" label="Directions" :href="socials.gmaps" target="_blank" rel="noopener" />
-          <q-btn outline color="white" no-caps icon="star" label="Reviews" :href="socials.greview" target="_blank" rel="noopener" />
+          <q-btn outline color="white" no-caps icon="star" label="Write a Review" :href="socials.greview" target="_blank" rel="noopener" />
         </div>
       </div>
 
@@ -84,14 +84,11 @@
           <q-btn flat no-caps dense align="left" to="/about" label="About" />
           <q-btn flat no-caps dense align="left" to="/contact-us" label="Contact" />
           <q-btn flat no-caps dense align="left" :to="{ path: '/', hash: '#workstudy' }" label="Work & Study (House rules)" />
-          <q-separator dark class="q-my-sm" />
-          <q-btn flat no-caps dense align="left" to="/privacy" label="Privacy" />
-          <q-btn flat no-caps dense align="left" to="/terms" label="Terms" />
         </div>
       </div>
     </div>
 
-    <q-separator dark class="q-my-md" />
+    <q-separator dark class="q-my-lg" />
 
     <div class="row items-center justify-between">
       <div class="text-caption">Made with ☕ & 🌙 vibes</div>
@@ -112,10 +109,10 @@ const brandName = "La Luna Moon Cafe"; // ✅ update name
 
 // Footer socials (replace with real links)
 const socials = {
-  fb: "https://facebook.com/LaLunaMoonCafe",
+  fb: "https://www.facebook.com/profile.php?id=61577042127849",
   ig: "https://instagram.com/lalunamooncafe",
-  tt: "https://tiktok.com/@lalunamooncafe",
-  gmaps: "https://maps.app.goo.gl/ChIJ-ymm_oCxlzMR8KM3wOzIkUA",
+  tt: "https://www.tiktok.com/@lalunamoon.cafe?lang=en",
+  gmaps: "https://maps.app.goo.gl/Mj43TgpPhfZ594Ti8",
   greview: "https://search.google.com/local/writereview?placeid=ChIJ-ymm_oCxlzMR8KM3wOzIkUA",
 };
 
